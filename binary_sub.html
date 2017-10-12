@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
+    <script type="text/javascript" async src="mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="js/prism.js"></script>
+    <link href="style/prism.css" rel="stylesheet" type="text/css">
+    <script></script>
+    <title>১.৩.২ বাইনারি বিয়োগ</title>
+</head>
+
+<body>
+    <div class="body-content">
+        <div class="multi-card">
+            <div class="desc-top">
+                <p>বাইনারি বিয়োগে নিচের সূত্র গুলো ব্যবহার করা হয়ঃ</p>
+            </div>
+            <table class="rules">
+                <tr>
+                    <th width="50%">বাইনারি বিয়োগ</th>
+                    <th width="25%">ফলাফলে বসবে</th>
+                    <th width="25%">ধার থাকে (borrow)</th>
+                </tr>
+                <tr>
+                    <td>0 - 0 = 0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1 - 0 = 1</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1 - 1 = 0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0 - 1 = 1</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="note">
+            <p>ছোট অংক থেকে বড় অংক বিয়োগ করতে হলে ছোট অংকের সাথে ভিত্তি যোগ করতে হয়। এবং পরের ধাপের দ্বিতীয়/নিচের অংকের সাথে 1 যোগ করতে হয়। যাকে ধার বা borrow বলা হয়।</p>
+            <p>উপরের টেবিলে,</p>
+<blockquote><p>0 - 1 = 1</p></blockquote>
+            <p>- এ যেহেতু ছোট সংখ্যা ("0") থেকে বড় সংখ্যা ("1") বিয়োগ করা হয়েছে, তাই 0 এর সাথে বাইনারির ভিত্তি 2 যোগ করা হয়েছে। ফলে ফলাফল হয় 2 - 1 = 1, অর্থাৎ ফলাফলে বসবে 1 এবং ধার (borrow) থাকে 1।</p>
+        </div>
+
+        <div class="multi-card">
+            <div class="desc-top">
+                <p>বাইনারি বিয়োগ করার সময় সাধারণ বিয়োগের মত সব কিছু লিখা হয়।</p>
+            </div>
+            <pre class="example"><span class="operand"></span>
+<span class="operand">   1  1  0  1 ← প্রথম সংখ্যা</span>
+<span class="operand">-  0  1  1  1 ← দ্বিতীয় সংখ্যা</span>
+<span class="operand"></span>
+──────────────
+<span class="result">              ← ফলাফল</span>
+<span class="result">              ← Borrow</span></pre>
+        </div>
+
+        <div class="ques-card">
+            <p>(1101)<sub>2</sub> থেকে (111)<sub>2</sub> বিয়োগ কর।</p>
+        </div>
+
+        <h3 class="step">ধাপ ১</h3>
+        <div class="multi-card">
+            <pre class="example"><span class="operand"></span>
+<span class="operand">   1  1  0  <strong>1</strong></span>
+<span class="operand">-  0  1  1  <strong>1</strong></span>
+<span class="operand"></span>
+──────────────
+<span class="result">            <strong>0</strong></span>
+<span class="borrow">            <strong>0</strong></span></pre>
+            <div class="desc-bottom">
+                <blockquote><p>1 - 1 = 0</p></blockquote>
+                <p>ফলাফলে বসবে 0, কোনো borrow নেই।</p>
+            </div>
+        </div>
+
+        <h3 class="step">ধাপ ২</h3>
+        <div class="multi-card">
+            <pre class="example"><span class="operand">        <strong>10</strong></span>
+<span class="operand">   1  1  <s>0</s>  1</span>
+<span class="operand">-  0  1  <strong>1</strong>  1</span>
+
+──────────────
+<span class="result">         <strong>1</strong>  0</span>
+<span class="borrow">         <strong>1</strong></span></pre>
+            <div class="desc-bottom">
+                <p>যেহেতু প্রথম অংক (0) থেকে দ্বিতীয় অংকটি বড় তাই প্রথম অংকের সাথে বাইনারির ভিত্তি 2 (Binary = 10) যোগ করা হয়েছে। 0 + 10 = 10 (Decimal = 2)</p>
+                <blockquote><p>10 - 1 = 1 (Decimal: 2 - 1 = 1)</p></blockquote>
+                <p>ফলাফলে বসবে 1, যেহেতু উপরে ভিত্তি যোগ করা হয়েছে তাই borrow হবে 1</p>
+            </div>
+        </div>
+
+        <h3 class="step">ধাপ ৩</h3>
+        <div class="multi-card">
+            <pre class="example"><span class="operand">     <strong>11</strong></span>
+<span class="operand">   1  <s>1</s>  0  1</span>
+<span class="operand">-  0  <s>1</s>  1  1</span>
+<span class="operand">     <strong>10</strong></span>
+──────────────
+<span class="result">      <strong>1</strong>  1  0</span>
+<span class="borrow">      <strong>1</strong></span></pre>
+            <div class="desc-bottom">
+                <p>আগের ধাপের 1 এ ধাপের নিচের অংকের সাথে যোগ হবেঃ 1 + 1 = 10 (Decimal = 2)</p>
+                <p>যেহেতু এবার উপরের সংখ্যাটি ছোট হয়ে গিয়েছে তাই আগের মত এর সাথে ভিত্তি 2 (Binary = 10) যোগ করতে হবেঃ 1 + 10 = 11 (Decimal = 3)</p>
+                <blockquote><p>11 - 10 = 1 (Decimal: 3 - 2 = 1)</p></blockquote>
+                <p>ফলাফলে বসবে 1, Borrow হবে 1</p>
+            </div>
+        </div>
+
+        <h3 class="step">ধাপ ৪</h3>
+        <div class="multi-card">
+            <pre class="example"><span class="operand"></span>
+<span class="operand">   <strong>1</strong>  1  0  1</span>
+<span class="operand">-  <s>0</s>  1  1  1</span>
+<span class="operand">   <strong>1</strong></span>
+──────────────
+<span class="result">   <strong>0</strong>  1  1  0</span>
+<span class="borrow">   <strong>0</strong></span></pre>
+            <div class="desc-bottom">
+                <p>আগের ধাপের 1 এ ধাপের নিচের অংকের সাথে যোগ হবেঃ 1 + 1 = 10 (Decimal = 2)</p>
+                <blockquote><p>1 - 1 = 0</p></blockquote>
+                <p>ফলাফলে বসবে 0, কোনো borrow নেই।</p>
+            </div>
+        </div>
+
+        <div class="solution-button-panel">
+            <a class="button" href="binary_sub_solution.html">সমাধান</a>
+        </div>
+    </div>
+
+    <div class="nav bottom">
+        <a class="button prev" href="binary_add.html"></a>
+        <a class="button next" href="signed_number.html"></a>
+    </div>
+
+</body>
+
+</html>

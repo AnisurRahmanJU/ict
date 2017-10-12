@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/solution-common.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("form").submit(function(event) {
+                event.preventDefault();
+
+                var regSize = 8;
+
+                var op1Main = op1 = $("#operand1").val();
+                var op2Main = op2 = $("#operand2").val();
+
+                // Save values sign
+                var op1isNegetive = false;
+                var op2isNegetive = false;
+                op1sign = "+";
+                op2sign = "+";
+
+                if (op1.charAt(0) == "-") {
+                    op1isNegetive = true;
+                    op1sign = "-";
+                }
+
+                if (op2.charAt(0) == "-") {
+                    op2isNegetive = true;
+                    op2sign = "-";
+                }
+
+
+                // Subtrace the sign
+                if (op1.charAt(0) == "+" || op1.charAt(0) == "-") {
+                    op1 = op1.substr(1);
+                }
+
+                if (op2.charAt(0) == "+" || op2.charAt(0) == "-") {
+                    op2 = op2.substr(1);
+                }
+
+                if ((Number(op1) == 0 && op1isNegetive) || (Number(op2) == 0 && op2isNegetive)) {
+                    $(".step-body").html("<div class=\"card\" id=\"question\">" +
+                        "<h1>ত্রুটি!</h1>" +
+                        "<p>ইনপুট চেক কর! ঋনাত্মক শুন্য!</p>" +
+                        "</div>");
+
+                    // Scroll Down to result
+                    $('html, body').animate({
+                        scrollTop: $("#question").offset().top - 10
+                    }, 500);
+
+                    return;
+                }
+
+                if ((Number(op1Main) - Number(op2Main) < -128) || (Number(op1Main) - Number(op2Main) > 127)) {
+                    $(".step-body").html("<div class=\"card\" id=\"question\">" +
+                        "<h1>ত্রুটি!</h1>" +
+                        "<p>বিয়োগের ফলাফল -128 থেকে +127 এর মধ্যে নেই! Momory Overflow!</p>" +
+                        "</div>");
+
+                    // Scroll Down to result
+                    $('html, body').animate({
+                        scrollTop: $("#question").offset().top - 10
+                    }, 500);
+
+                    return;
+                }
+
+                // Convert into binary and make fixed length
+                var val1 = makeFixedLength(DecimalToBinary(op1), regSize),
+                    val2 = makeFixedLength(DecimalToBinary(op2), regSize);
+
+                var htmlString = "<div class=\"ques-card\" id=\"question\"><p>" +
+                    "(" + op1Main + ")<sub>10</sub>" +
+                    " থেকে " +
+                    "(" + op2Main + ")<sub>10</sub>" +
+                    " বিয়োগ করতে হবে।" +
+                    "</p></div>";
+
+                htmlString += "<h3 class='step'>সমাধান</h3>";
+
+
+                htmlString += "<div class=\"multi-card\">" +
+                    "<pre class=\"example\">";
+
+
+                // Step 1.1: Convert into binary. If negetive then use 2's complement
+                htmlString += "<strong>ধাপ ১: মান বের করা</strong>\n\n";
+
+                if (op1isNegetive) {
+                    var onesComp = onesComplement(val1),
+                        twosComp = twosComplement(val1);
+
+                    htmlString += "<strong>(" + op1Main + ")₁₀ :</strong>\n\n";
+
+                    htmlString += val1 + " ← (+" + op1 + ")₁₀" +
+                        "\n" + Array(regSize + 1).join("↓") +
+                        "\n" + onesComp + " ← 1's complement" +
+                        "\n" + Array(regSize - 1).join(" ") + "+1" +
+                        "\n" + Array(regSize + 1).join("─") +
+                        "\n" + twosComp + " ← (-" + op1 + ")₁₀";
+
+                    val1 = twosComp;
+
+                } else {
+
+                    htmlString += "<strong>(" + op1Main + ")₁₀ =</strong> " + val1;
+
+                }
+
+                htmlString += "\n\n";
+
+                if (op2isNegetive) {
+                    var onesComp = onesComplement(val2),
+                        twosComp = twosComplement(val2);
+
+                    htmlString += "<strong>(" + op2Main + ")₁₀ :</strong>\n\n";
+
+                    htmlString += val2 + " ← (+" + op2 + ")₁₀" +
+                        "\n" + Array(regSize + 1).join("↓") +
+                        "\n" + onesComp + " ← 1's complement" +
+                        "\n" + Array(regSize - 1).join(" ") + "+1" +
+                        "\n" + Array(regSize + 1).join("─") +
+                        "\n" + twosComp + " ← (-" + op2 + ")₁₀";
+
+                    val2 = twosComp;
+
+                } else {
+
+                    htmlString += "<strong>(" + op2Main + ")₁₀ =</strong> " + val2 + "\n\n";
+
+                }
+
+                // Step 1.2: 2's complement of subtrahend (বিয়োজ্য)
+                htmlString += "\n\n";
+                htmlString += "<strong>ধাপ ২: বিয়োজ্যের দুই এর পরিপূরক বের করা</strong>\n\n";
+
+                {
+                    var onesComp = onesComplement(val2),
+                        twosComp = twosComplement(val2);
+
+                    htmlString += "<strong>(" + op2Main + ")₁₀ :</strong>\n\n";
+
+                    htmlString += val2 +
+                        "\n" + Array(regSize + 1).join("↓") +
+                        "\n" + onesComp + " ← 1's complement" +
+                        "\n" + Array(regSize - 1).join(" ") + "+1" +
+                        "\n" + Array(regSize + 1).join("─") +
+                        "\n" + twosComp;
+
+                    val2 = twosComp;
+                }
+
+
+                // Step 2: Addition of the Numbers
+                htmlString += "\n\n";
+                htmlString += "<strong>ধাপ ৩: যোগ করা</strong>\n\n";
+
+                var sum = DecimalToBinary(BinaryToDecimal(val1) + BinaryToDecimal(val2));
+
+
+                // Step 3: Ignore the overflow carry
+                if (sum.length > regSize) {
+                    sum = sum.substr(sum.length - regSize);
+                }
+
+                if (sum.length < regSize) {
+                    sum = makeFixedLength(sum, regSize);
+                }
+
+                htmlString += " " + val1 + " ← (" + op1sign + op1 + ")₁₀" +
+                    "\n+" + val2 + " ← (" + op2sign + op2 + ")₁₀" +
+                    "\n─" + Array(regSize + 1).join("─") +
+                    "\n " + sum;
+
+                // Step 4: Get the answer, if ans negative then two's comp agian
+
+                var sign = "";
+
+                if (sum.charAt(0) == "1") {
+                    htmlString += "\n\n" +
+                        "<strong>ফলাফলের চিহ্নবিট 1, অর্থাৎ মানটি ঋনাত্মক।</strong>";
+                    sign = "-";
+
+
+                    var onesComp = onesComplement(sum),
+                        twosComp = twosComplement(sum);
+
+                    htmlString += "\n\n";
+
+                    htmlString += sum +
+                        "\n" + Array(regSize + 1).join("↓") +
+                        "\n" + onesComp + " ← 1's complement" +
+                        "\n" + Array(regSize - 1).join(" ") + "+1" +
+                        "\n" + Array(regSize + 1).join("─") +
+                        "\n" + twosComp + " = " + BinaryToDecimal(twosComp);
+
+                    sum = twosComp;
+
+                } else {
+                    htmlString += "\n\n" +
+                        "<strong>ফলাফলের চিহ্নবিট 0, অর্থাৎ মানটি ধনাত্মক।</strong>";
+                }
+
+
+                // ------------------------------------------------
+
+                htmlString += "</pre><div class=\"desc-bottom\">" +
+                    "<p>বিয়োগফলঃ</p>" +
+                    "<pre>(" + sum + ")<sub>2</sub> = (" + sign + BinaryToDecimal(sum) + ")<sub>10</sub></pre>";
+
+                htmlString += "</div></div>";
+
+                // ------------------------------------------------
+
+                $(".step-body").html(htmlString);
+
+
+                // Scroll Down to result
+                $('html, body').animate({
+                    scrollTop: $("#question").offset().top - 10
+                }, 500);
+
+            });
+
+        });
+    </script>
+    <title>১.৪.২.১ দুই এর পরিপূরকে বিয়োগ সমাধান</title>
+</head>
+
+<body>
+    <div class="body-content">
+
+        <form class="form">
+            <div class="desc-top">
+                <p>
+                    নিচের বাক্সে দশমিক সংখ্যা লিখ এবং <kbd>ধাপ দেখাও</kbd> বাটনে ক্লিক কর।
+                </p>
+                <p>
+                    রেজিস্টারের আকারঃ 8 bit (দশমিক মানঃ -128 থেকে +127)
+                </p>
+            </div>
+            <div class="input-elements">
+                <input id="operand1" value="+19" type="text" pattern="[\+\-]?([0-9A-F]){1,8}" title="Only numbers and maximum 8 bit." required></br>
+                <input id="operand2" value="-52" type="text" pattern="[\+\-]?([0-9A-F]){1,8}" title="Only numbers and maximum 8 bit." required></br>
+                <input class="button" name="submit" type="submit" value="ধাপ দেখাও">
+            </div>
+        </form>
+
+        <div class="step-body"></div>
+
+    </div>
+
+    <div class="nav bottom">
+        <a class="button prev" href="#"></a>
+        <!-- <a class="button next" href="#"></a> -->
+    </div>
+
+</body>
+
+</html>

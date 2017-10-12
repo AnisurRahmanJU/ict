@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/solution-common.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("form").submit(function(event) {
+                event.preventDefault();
+
+                // bast whare to convert
+                var base = 2;
+
+                var op1 = $("#operand1").val();
+
+                var len = op1.length;
+
+                var htmlString = "<div class=\"ques-card\" id=\"question\"><p>" +
+                    "(" + op1 + ")<sub>10</sub> কে বাইনারি সংখ্যা পদ্ধতিতে রূপান্তর করতে হবে।" +
+                    "</p></div>";
+
+                var radixPoint = op1.indexOf(".");
+
+                if (radixPoint != -1) {
+                    if (radixPoint == 0 || radixPoint == len - 1) {
+                        $(".step-body").html("<div class=\"card\" id=\"question\">" +
+                            "<h1>ত্রুটি!</h1>" +
+                            "<p>ইনপুট চেক কর!</p>" +
+                            "</div>");
+
+                        // Scroll Down to result
+                        $('html, body').animate({
+                            scrollTop: $("#question").offset().top - 10
+                        }, 500);
+
+                        return;
+                    }
+                }
+
+                var intPart = "",
+                    fractionPart = "",
+                    valIntPart = 0,
+                    valFractionPart = 0;
+                if (radixPoint != -1) {
+                    // If radix point found then,
+                    intPart = op1.slice(0, radixPoint);
+                    valIntPart = Number(intPart);
+
+                    fractionPart = op1.slice(radixPoint, len);
+                    valFractionPart = Number(fractionPart);
+                } else {
+                    intPart = op1;
+                    valIntPart = Number(intPart);
+                }
+
+                // Integer part
+
+                htmlString += "<h3 class=\"step\">পূর্ণাংশ</h3>";
+
+                if (valIntPart == 0) {
+
+                    var intPartFinalResult = 0;
+
+                    htmlString = htmlString +
+                        "<div class=\"card\">";
+
+                    htmlString += "<p>(" + valIntPart + ")<sub>10</sub> = (" + intPartFinalResult + ")<sub>"+ base +"</sub></p>";
+
+                    htmlString += "</div>";
+
+                } else {
+                    var quotient = valIntPart,
+                        reminder = 0;
+                    var intPartFinalResult = "";
+
+                    htmlString = htmlString +
+                        "<div class=\"multi-card\">" +
+                        "<pre class=\"example\">" +
+                        base + "│" + intPart + "  ভাগশেষ" +
+                        "\n" + Array(base.toString().length + 1).join("─") + "┼" + Array(intPart.length + 9).join("─");
+
+                    var firstStep = true;
+                    while (quotient > 0) {
+                        reminder = quotient % base;
+                        quotient = parseInt(quotient / base);
+                        intPartFinalResult = reminder + intPartFinalResult;
+
+                        htmlString = htmlString +
+                            "\n" + base + "│" + quotient + Array(intPart.length + 7 - quotient.toString().length - reminder.toString().length).join(" ") + reminder;
+
+                        if (firstStep) {
+                            htmlString += "   ↑";
+                            firstStep = false;
+                        } else {
+                            htmlString += "   │";
+                        }
+
+                        if (quotient != 0) {
+                            htmlString = htmlString +
+                                "\n" + Array(base.toString().length + 1).join("─") + "┼" + Array(intPart.length + 9).join("─") + " │";
+                        }
+                    }
+
+                    htmlString += "</pre><div class=\"desc-bottom\">" +
+                        "<p>(" + valIntPart + ")<sub>10</sub> = (" + intPartFinalResult + ")<sub>"+ base +"</sub></p>";
+
+                    htmlString += "</div></div>";
+                }
+
+                // fractional part
+
+                if (valFractionPart != 0) {
+
+                    htmlString += "<h3 class=\"step\">ভগ্নাংশ</h3>";
+
+                    htmlString = htmlString +
+                        "<div class=\"multi-card\">" +
+                        "<pre class=\"example\">";
+
+                    htmlString += "    │" + fractionPart +
+                        "\n" + "    │" + Array(fractionPart.length - 1).join(" ") + "×" + base +
+                        "\n" + "   ─┼" + Array(fractionPart.length + 2).join("─");
+
+                    var product = valFractionPart,
+                        productIntPart = 0;
+                    var fractionPartFinalResult = ".";
+
+                    var steps = 0;
+                    while (product > 0) {
+                        steps++;
+                        if (steps > 5)
+                            break;
+
+                        product *= base;
+                        productIntPart = Math.floor(product);
+                        product = product - productIntPart;
+
+                        fractionPartFinalResult += productIntPart;
+
+                        if (steps < 5 && product != 0) {
+                            htmlString += "\n" + "│";
+                        } else {
+                            htmlString += "\n" + "↓";
+                        }
+
+                        htmlString += "  " + productIntPart + "│" + product.toFixed(5).toString().slice(1);
+
+                        if (steps < 5 && product != 0) {
+                            htmlString +=
+                                "\n" + "│   │" + Array(fractionPart.length - 1).join(" ") + "×" + base +
+                                "\n" + "│  ─┼" + Array(fractionPart.length + 2).join("─");
+                        }
+
+                    }
+
+                    if (product != 0) {
+                        htmlString += "\n" + "..." +
+                            "\n" + "..." +
+                            "\n" + "...";
+                    }
+
+                    htmlString += "</pre><div class=\"desc-bottom\">" +
+                        "<p>(" + valFractionPart.toString().slice(1) + ")<sub>10</sub> = (" + fractionPartFinalResult + ((product != 0) ? "..." : "") +
+                        ")<sub>"+ base +"</sub></p>";
+
+                    htmlString += "</div></div>";
+
+                }
+
+                // Marging all results
+                htmlString += "<h3 class=\"step\">ফলাফল</h3>";
+
+                htmlString += "<div class=\"card\">";
+
+                if (valFractionPart != 0) {
+                    htmlString +=
+                        "<pre>(" + valIntPart + valFractionPart.toString().slice(1) + ")<sub>10</sub> = (" + intPartFinalResult + fractionPartFinalResult + ((product != 0) ? "..." : "") + ")<sub>"+ base +"</sub></pre>"
+                } else {
+                    htmlString +=
+                        "<pre>(" + valIntPart + ")<sub>10</sub> = (" + intPartFinalResult + ")<sub>"+ base +"</sub></pre>"
+                }
+
+                htmlString += "</div>";
+
+                $(".step-body").html(htmlString);
+
+                // Scroll Down to result
+                $('html, body').animate({
+                    scrollTop: $("#question").offset().top - 10
+                }, 500);
+
+            });
+
+        });
+    </script>
+    <title>১.২.১ দশমিক থেকে বাইনারি সমাধান</title>
+</head>
+
+<body>
+    <div class="body-content">
+
+        <form class="form">
+            <div class="desc-top">
+                <p>
+                    নিচের বাক্সে দশমিক সংখ্যা লিখ এবং <kbd>রূপান্তর</kbd> বাটনে ক্লিক কর।
+                </p>
+                <p>
+                    সর্বোচ্চঃ 16 digit (Radix point সহ)
+                </p>
+            </div>
+            <div class="input-elements">
+                <input id="operand1" value="19.71" type="text" pattern="\b([0-9]){1,8}[.]?([0-9]){0,8}\b" title="Only numbers and maximum 16 digit." required></br>
+                <input class="button" name="submit" type="submit" value="রূপান্তর">
+            </div>
+        </form>
+
+        <div class="step-body"></div>
+
+    </div>
+
+    <div class="nav bottom">
+        <a class="button prev" href="#"></a>
+        <!-- <a class="button next" href="#"></a> -->
+    </div>
+
+</body>
+
+</html>

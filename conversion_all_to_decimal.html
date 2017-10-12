@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
+    <script></script>
+    <title>১.২.২ সব থেকে দশমিক</title>
+</head>
+
+<body>
+    <div class="body-content">
+
+        <div class="multi-card">
+            <div class="desc-top">
+                <h1 class="caption">যে কোনো সংখ্যা পদ্ধতি থেকে দশমিক সংখ্যা পদ্ধতি</h1>
+                <p>যে কোন সংখ্যা পদ্ধতিতে থেকে দশমিক সংখ্যা পদ্ধতিতে রূপান্তরের ক্ষেত্রে নিচের ধাপ গুলো অনুসরণ করতে হয়</p>
+                <ol>
+                    <li>প্রদত্ত সংখ্যাটির ভিত্তি শনাক্ত করতে হবে এবং সংখ্যাটির প্রত্যেকটি অংকের স্থানীয় মান বের করতে হবে।</li>
+                    <li>সংখ্যার পত্যেকটি অংকের নিজস্ব মানকে তার স্থানীয় মান দিয়ে গুণ করতে হবে।</li>
+                    <li>গুণফলগুলোর যোগফলই হবে রুপান্তরিত দশমিক সংখ্যা।</li>
+                </ol>
+                <p>
+                    যে কোনো সংখ্যা পদ্ধতিতে স্থানীয় মান হয় নিচের মতঃ
+                </p>
+            </div>
+            <pre class="example">... n² n¹ n⁰ .  n<sup>-</sup>¹ n<sup>-</sup>² n<sup>-</sup>³ ...</pre>
+            <div class="desc-bottom">
+                <p>
+                    এখানে n হল যে সংখ্যা পদ্ধতি থেকে দশমিক সংখ্যা পদ্ধতিতে নিতে হবে তার ভিত্তি। যেমনঃ অক্টাল থেকে দশমিক করতে হলে n = 8 হবে, বাইনারি থেকে দশমিক করতে n = 2 হবে, হেক্সা-ডেসিম্যাল থেকে দশমিক করতে হলে n = 16 হবে ইত্যাদি।
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h1 class="caption">বাইনারি থেকে দশমিক</h1>
+            <p>বাইনারি সংখ্যা পদ্ধতি থেকে দশমিক সংখ্যা পদ্ধতিতে রুপান্তর করার একটি উদাহরন নিচে দেয়া হল।</p>
+            <p>দ্রষ্টব্যঃ বাইনারি সংখ্যা পদ্ধতির ভিত্তি 2।</p>
+        </div>
+
+        <div class="ques-card">
+            <p>
+                বাইনারি সংখ্যা (1101.1011)<sub>2</sub> এর দশমিক মান কত?
+            </p>
+        </div>
+
+        <div class="multi-card">
+            <div class="desc-top">
+                <p>
+                    যেহেতু বাইনারি সংখ্যা পদ্ধতির ভিত্তি 2, তাই বাইনারি সংখ্যাটির প্রতিটি অংককে উপরে দেখানো স্থানীয় মান নিয়মে n = 2 বসিয়ে প্রতিটি অংককে গুন করে যোগ করতে হবে।
+                </p>
+            </div>
+            <pre class="example">  1×2<sup>3</sup> + 1×2<sup>2</sup> + 0×2<sup>1</sup> + 1×2<sup>0</sup> + 1×2<sup>-1</sup> + 0×2<sup>-2</sup> + 1×2<sup>-3</sup> + 1×2<sup>-4</sup>
+= 1×8 + 1×4 + 0×2 + 1×1 + 1×0.5 + 0×0.25 + 1×0.125 + 1×0.0625
+= 8 + 4 + 0 + 1 + 0.5 + 0 + 0.125 + 0.0625
+= 13.6875</pre>
+            <div class="desc-bottom">
+                <p>
+                    সুতরাং (1101.1011)<sub>2</sub> = (13.6875)<sub>10</sub>
+                </p>
+            </div>
+        </div>
+
+        <div class="solution-button-panel">
+            <a class="button" href="binary_to_decimal_solution.html">সমাধান</a>
+        </div>
+
+        <hr>
+
+        <!-- Octal to Decimal -->
+
+        <div class="card">
+            <h1 class="caption">অক্টাল থেকে দশমিক</h1>
+            <p>অক্টাল সংখ্যা পদ্ধতি থেকে দশমিক সংখ্যা পদ্ধতিতে রুপান্তর করার একটি উদাহরন নিচে দেয়া হল।</p>
+            <p>দ্রষ্টব্যঃ অক্টাল সংখ্যা পদ্ধতির ভিত্তি 8।</p>
+        </div>
+
+        <div class="ques-card">
+            <p>
+                অক্টাল সংখ্যা (1357.2461)<sub>8</sub> এর দশমিক মান কত?
+            </p>
+        </div>
+
+        <div class="multi-card">
+            <div class="desc-top">
+                <p>
+                    যেহেতু অক্টাল সংখ্যা পদ্ধতির ভিত্তি 8, তাই অক্টাল সংখ্যাটির প্রতিটি অংককে উপরে দেখানো স্থানীয় মান নিয়মে n = 8 বসিয়ে প্রতিটি অংককে গুন করে যোগ করতে হবে।
+                </p>
+            </div>
+            <pre class="example">  1×8<sup>3</sup> + 3×8<sup>2</sup> + 5×8<sup>1</sup> + 7×8<sup>0</sup> + 2×8<sup>-1</sup> + 4×8<sup>-2</sup> + 6×8<sup>-3</sup> + 1×8<sup>-4</sup>
+= 1×512 + 3×64 + 5×8 + 7×1 + 2×0.125 + 4×0.0156 + 6×0.00195 + 1×0.000244
+= 512 + 192 + 40 + 7 + 0.25 + 0.0624 + 0.0117 + 0.000244
+= 751.324344</pre>
+            <div class="desc-bottom">
+                <p>
+                    সুতরাং (1357.2461)<sub>8</sub> = (751.324344)<sub>10</sub>
+                </p>
+            </div>
+        </div>
+
+        <div class="solution-button-panel">
+            <a class="button" href="octal_to_decimal_solution.html">সমাধান</a>
+        </div>
+
+        <hr>
+
+        <!-- Hexa to Decimal -->
+
+        <div class="card">
+            <h1 class="caption">হেক্সা-ডেসিম্যাল থেকে দশমিক</h1>
+            <p>হেক্সা-ডেসিম্যাল সংখ্যা পদ্ধতি থেকে দশমিক সংখ্যা পদ্ধতিতে রুপান্তর করার একটি উদাহরন নিচে দেয়া হল।</p>
+            <p>দ্রষ্টব্যঃ হেক্সা-ডেসিম্যাল সংখ্যা পদ্ধতির ভিত্তি 16।</p>
+        </div>
+
+        <div class="ques-card">
+            <p>
+                হেক্সা-ডেসিম্যাল সংখ্যা (A3B1.2C6)<sub>16</sub> এর দশমিক মান কত?
+            </p>
+        </div>
+
+        <div class="multi-card">
+            <div class="desc-top">
+                <p>
+                    যেহেতু হেক্সা-ডেসিম্যাল সংখ্যা পদ্ধতির ভিত্তি 16, তাই হেক্সা-ডেসিম্যাল সংখ্যাটির প্রতিটি অংককে উপরে দেখানো স্থানীয় মান নিয়মে n = 16 বসিয়ে প্রতিটি অংককে গুন করে যোগ করতে হবে।
+                </p>
+            </div>
+            <pre class="example">  A×16<sup>3</sup> + 3×16<sup>2</sup> + B×16<sup>1</sup> + 1×16<sup>0</sup> + 2×16<sup>-1</sup> + C×16<sup>-2</sup> + 6×16<sup>-3</sup>
+= 10×16<sup>3</sup> + 3×16<sup>2</sup> + 11×16<sup>1</sup> + 1×16<sup>0</sup> + 2×16<sup>-1</sup> + 12×16<sup>-2</sup> + 6×16<sup>-3</sup>
+= 10×4096 + 3×256 + 11×16 + 1×1 + 2×0.0625 + 12×0.0036 + 6×0.000244
+= 40960 + 768 + 176 + 1 + 0.125 + 0.0432 + 0.001464
+= 41905.1697</pre>
+            <div class="desc-bottom">
+                <p>
+                    সুতরাং (A3B1.2C6)<sub>16</sub> = (41905.1697)<sub>10</sub>
+                </p>
+            </div>
+        </div>
+
+        <div class="solution-button-panel">
+            <a class="button" href="hexa_to_decimal_solution.html">সমাধান</a>
+        </div>
+
+
+    </div>
+    <div class="nav bottom">
+        <a class="button prev" href="conversion_decimal_to_all.html"></a>
+        <a class="button next" href="conversion_bin_oct_hexa.html"></a>
+    </div>
+
+</body>
+
+</html>

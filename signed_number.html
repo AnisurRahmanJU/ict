@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
+    <script></script>
+    <title>১.৪ চিহ্নযুক্ত সংখ্যা</title>
+</head>
+
+<body>
+    <div class="body-content">
+        <div class="multi-card">
+            <div class="desc-top">
+                <p>সব ধরনের সংখ্যাকে দুই ভাগে ভাগ করা হয়। ধনাত্মক সংখ্যা এবং ঋনাত্মক সংখ্যা।</p>
+                <p>কম্পিউটার যেহেতু 0 এবং 1 ছাড়া কিছু বুঝে না, তাই কম্পিউটারকে ধনাত্মক এবং ঋনাত্মক সংখ্যা বুঝানোর জন্য একটি bit বরাদ্দ করা থাকে। এ বরাদ্দকৃত bit কে sign bit বলে।</p>
+                <p>
+                    ধনাত্মক সংখ্যা বুঝাতে sign bit 0 এবং ঋনাত্মক বুঝাতে sign bit 1 ব্যবহার করা হয়।
+                </p>
+            </div>
+            <pre class="example">(<strong>0</strong>0000001)₂ = (+1)₁₀
+ │
+ └─── Sign bit
+
+(<strong>1</strong>0000101)₂ = (-5)₁₀
+ │
+ └─── Sign bit</pre>
+        </div>
+
+        <div class="card">
+            <h1>n's complement</h1>
+            <p>
+                বাইনারিতে ধনাত্মক সংখ্যায় সব সময় sign bit এর মান 0 রেখে প্রকাশ করা হয়। তবে ঋনাত্মক সংখ্যা প্রকাশ করার ক্ষেত্রে sign bit 1 করা ছাড়াও আরো দুটি পদ্ধতি আছে। সেগুলো হলঃ
+            </p>
+            <ol>
+                <li>১-এর পরিপূরক (1's complement)</li>
+                <li>২-এর পরিপূরক (2's complement)</li>
+            </ol>
+        </div>
+
+        <div class="note">
+            <p>
+                ঋনাত্মক সংখ্যা প্রকাশে শুধু sign bit 1 করার নিয়মটি কম্পিউটার ব্যবহার করে না। কারন এ নিয়ম শূন্যের জন্য +0 এবং -0 মান পাওয়া যায়।
+            </p>
+            <pre>(<strong>0</strong>0000000)₂ = (+0)₁₀
+(<strong>1</strong>0000000)₂ = (-0)₁₀</pre>
+            <p>
+                কিন্তু তা সম্ভব নয়। তাই কম্পিউটার এ নিয়মে ঋনাত্মক সংখ্যা প্রকাশ করে না। কম্পিউটার দুইয়ের পরিপূরক ব্যবহার করে ঋনাত্মক সংখ্যা প্রকাশ করে।
+            </p>
+        </div>
+        <div class="note">
+            <p>
+                চিহ্ন যুক্ত সংখ্যা লিখার ক্ষেত্রে নির্দিষ্ট সংখ্যা বিট নিয়ে লিখতে হয়। কারন গাণিতিক কাজের জন্য কম্পিউটারের প্রোসেসর বাইনারি ডেটাকে রেজিস্টারে সাময়িক ভাবে সংরক্ষন করে, রেজিস্টারের আকার 2<sup>n</sup> bit হয়ে থাকে, এখানে n হল যে কোনো পূর্নসংখ্যা।
+                যেমনঃ উপরের সব গুলো উদাহরনে 2<sup>3</sup> = 8 bit ব্যবহার করা হয়েছে। আমরা আমাদের সব উদাহরণে 8 bit ব্যবহার করেছি।
+            </p>
+        </div>
+    </div>
+
+    <div class="nav bottom">
+        <a class="button prev" href="binary_sub.html"></a>
+        <a class="button next" href="ones_complement.html"></a>
+    </div>
+
+</body>
+
+</html>

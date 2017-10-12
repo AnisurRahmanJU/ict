@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/solution-common.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("form").submit(function(event) {
+                event.preventDefault();
+                var op1 = $("#operand1").val();
+                var op2 = $("#operand2").val();
+
+                var val1 = BinaryToDecimal(op1),
+                    val2 = BinaryToDecimal(op2);
+
+                if (op1.length > 8 || op2.length > 8) {
+                    return;
+                }
+
+                // $(".step-body").html("");
+
+                var htmlString =
+                    "<div class=\"ques-card\" id=\"question\"><p>" +
+                    "(" + op1 + ")<sub>2</sub> = (" + val1 + ")<sub>10</sub>" +
+                    " এবং " +
+                    "(" + op2 + ")<sub>2</sub> = (" + val2 + ")<sub>10</sub>" +
+                    " যোগ করতে হবে।" +
+                    "</p></div>";
+
+                // if (val1 < val2) {
+                //     var temp = op1;
+                //     op1 = op2;
+                //     op2 = temp;
+                // }
+
+                var len1 = op1.length;
+                var len2 = op2.length;
+
+                // Making the values equal length by adding zeros to left
+                if (len1 != len2) {
+                    var diff = Math.abs(len1 - len2);
+                    if (len1 < len2) {
+                        op1 = Array(diff + 1).join("0") + op1;
+                        len1 = len2;
+                    } else {
+                        op2 = Array(diff + 1).join("0") + op2;
+                        len2 = len1;
+                    }
+                }
+
+                // console.log(op1);
+                // console.log(op2);
+
+                var len = len1;
+
+                // console.log(len);
+
+                var a = 0,
+                    b = 0,
+                    carry = 0,
+                    old_carry = 0,
+                    result,
+                    real_result,
+                    finalResult = "",
+                    finalCarry = "",
+                    count = 1;
+                len1--;
+                len2--;
+                for (var i = len - 1; i >= 0; i--) {
+                    if (len1 >= 0) {
+                        a = op1.charCodeAt(len1) - 48;
+                        len1--;
+                    } else {
+                        a = 0;
+                    }
+                    if (len2 >= 0) {
+                        b = op2.charCodeAt(len2) - 48;
+                        len2--;
+                    } else {
+                        b = 0;
+                    }
+
+                    real_result = a + b + carry;
+
+                    if (real_result == 2) {
+                        result = 0;
+                        carry = 1;
+                    } else if (real_result == 3) {
+                        result = 1;
+                        carry = 1;
+                    } else {
+                        result = real_result;
+                        carry = 0;
+                    }
+
+                    finalCarry = carry + finalCarry;
+                    finalResult = String(result) + finalResult;
+                    diff = len - finalResult.length;
+
+                    htmlString +=
+                        "<h3 class=\"step\">" + count + "</h3>" +
+                        "<div class=\"multi-card\">" +
+                        "<pre class=\"example\">" + Array(diff + 1).join(" ") + finalCarry +
+                        "\n " + op1 +
+                        "\n+" + op2 +
+                        "\n" + Array(len + 2).join("─") +
+                        "\n" + Array(diff + 2).join(" ") + finalResult + "</pre>" +
+                        "<div class=\"desc-bottom\">" +
+                        "\n" + "<p>" + DecimalToBinary(old_carry) + " (Carry) + " + DecimalToBinary(a) + " + " + DecimalToBinary(b) + " = " + DecimalToBinary(real_result) + "</p>" +
+                        "</div></div>";
+
+                    old_carry = carry;
+                    count++;
+                }
+
+                // check if any carry remainning
+                if (old_carry == 1) {
+                    finalResult = "1" + finalResult;
+                    diff = len - finalResult.length;
+
+                    htmlString +=
+                        "<h3 class=\"step\">" + count + "</h3>" +
+                        "<div class=\"multi-card\">" +
+                        "<pre class=\"example\">" + Array(diff + 1).join(" ") + finalCarry +
+                        "\n " + op1 +
+                        "\n+" + op2 +
+                        "\n" + Array(len + 2).join("─") +
+                        "\n" + Array(diff + 2).join(" ") + finalResult + "</pre>" +
+                        "<div class=\"desc-bottom\">" +
+                        "<p>" + DecimalToBinary(old_carry) + " (Carry) = " + DecimalToBinary(old_carry) + "</p>" +
+                        "</div></div>";
+                }
+
+                htmlString += "<h3 class='step'>সমাধান</h3>";
+
+                htmlString += "<div class='card'> \
+                <p><strong>ফলাফলঃ</strong></p> \
+                <pre>(" + finalResult +  ")<sub>2</sub> = (" + BinaryToDecimal(finalResult) + ")<sub>10</sub></pre> \
+                </div>";
+
+                $(".step-body").html(htmlString);
+
+
+                // Scroll Down to result
+                $('html, body').animate({
+                    scrollTop: $("#question").offset().top - 10
+                }, 500);
+
+            });
+
+        });
+    </script>
+    <title>১.৩.২ বাইনারি যোগ সমাধান</title>
+</head>
+
+<body>
+    <div class="body-content">
+
+        <form class="form">
+            <div class="desc-top">
+                <p>
+                    নিচের বাক্সে বাইনারি সংখ্যা লিখ এবং <kbd>ধাপ দেখাও</kbd> বাটনে ক্লিক কর।
+                </p>
+                <p>
+                    রেজিস্টারের আকারঃ 8 bit
+                </p>
+            </div>
+            <div class="input-elements">
+                <input id="operand1" value="110" type="text" pattern="[0-1]{1,8}" title="Only binary and maximum 8 bit." required></br>
+                <input id="operand2" value="101" type="text" pattern="[0-1]{1,8}" title="Only binary and maximum 8 bit." required></br>
+                <input class="button" name="submit" type="submit" value="ধাপ দেখাও">
+            </div>
+        </form>
+
+        <div class="step-body"></div>
+
+    </div>
+
+    <div class="nav bottom">
+        <a class="button prev" href="#"></a>
+        <!-- <a class="button next" href="#"></a> -->
+    </div>
+
+</body>
+
+</html>

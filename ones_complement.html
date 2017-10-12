@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
+    <script></script>
+    <title>১.৪.১ এক-এর পরিপূরক</title>
+</head>
+
+<body>
+    <div class="body-content">
+        <div class="note">
+            <p>
+                ঋণাত্মক সংখ্যা তৈরির জন্য ১-এর পরিপূরক (1's complement) গঠন ব্যবহার করা হয়।
+            </p>
+        </div>
+        <div class="multi-card">
+            <div class="desc-top">
+                <p>
+                    কোনো বাইনারি সংখ্যার প্রতিটি বিট কে 0 এর স্থানে 1 এবং 1 এর স্থানে 0 বসিয়ে দিলে সেটি ১-এর পরিপূরকে পরিনত হয়।
+                </p>
+            </div>
+            <pre class="example">(<strong>0</strong>0000101)₂ = (+5)₁₀
+ ↓↓↓↓↓↓↓↓
+(<strong>1</strong>1111010)₂ = (-5)₁₀ ← 1's complement</pre>
+            <div class="desc-bottom">
+                <p>
+                    ১-এর পরিপূরক করলে যে কোনো ধনাত্মক সংখ্যা ঋনাত্মক সংখ্যা পরিনত হয়।
+                </p>
+            </div>
+        </div>
+        <div class="multi-card">
+            <div class="desc-top">
+                <h1>১-এর পরিপূরকে সমস্যা</h1>
+                <p>
+                    কিন্তু ১-এর পরিপূরক গঠনে শূন্যের জন্য দুটি মান (+0 এবং -0) তৈরি করা সম্ভব।
+                </p>
+            </div>
+            <pre class="example">(<strong>0</strong>0000000)₂ = (+0)₁₀
+ ↓↓↓↓↓↓↓↓
+(<strong>1</strong>1111111)₂ = (-0)₁₀</pre>
+            <div class="desc-bottom">
+                <p>
+                    এটি অসম্ভব! তাই কম্পিউটারে এ গঠন পদ্ধতি ব্যবহার করা হয় না।
+                </p>
+            </div>
+        </div>
+        <div class="note">
+            <p>
+                কোনো বাইনারি সংখ্যার ধনাত্মক মান থেকেই শুধুমাত্র ১-এর পরিপূরক তৈরি করা সম্ভব। ১-এর পরিপূরক সংখ্যাটি সবসময় ঋনাত্মকই হবে। কারণ ঋনাত্মক মান তৈরি করতেই ১-এর পরিপূরক ব্যবহার করা হয়। ধনাত্মক সংখ্যার ১-এর পরিপূরক তাই সম্ভব নয়।
+            </p>
+        </div>
+        <div class="solution-button-panel">
+            <a class="button" href="ones_complement_solution.html">সমাধান</a>
+        </div>
+    </div>
+
+    <div class="nav bottom">
+        <a class="button prev" href="signed_number.html"></a>
+        <a class="button next" href="twos_complement.html"></a>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/solution-common.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("form").submit(function(event) {
+                event.preventDefault();
+
+
+                //      0 1010 0111 . 0110 0110 1
+                // ← ──── ──── ──── ↓ ──── ──── ──── →
+                //     ↓    ↓    ↓  ↓   ↓    ↓    ↓
+                //   0000 1010 0111 . 0110 0110 1000
+                // ← ──── ──── ──── ↓ ──── ──── ──── →
+                //     ↓    ↓    ↓  ↓   ↓    ↓    ↓
+                //     0   10    7  .   6    6    8
+                //     ↓    ↓    ↓  ↓   ↓    ↓    ↓
+                //     0    A    7  .   6    6    8
+
+                // base whare to convert
+                var toBase = 2;
+                // base where from convert
+                var fromBaseMain = fromBase = 8;
+
+                var opMain = op1 = $("#operand1").val();
+
+                var len = op1.length;
+
+                var htmlString = "<div class=\"ques-card\" id=\"question\"><p>" +
+                    "(" + op1 + ")<sub>" + fromBase + "</sub> কে হেক্সা-ডেসিম্যাল সংখ্যা পদ্ধতিতে রূপান্তর করতে হবে।" +
+                    "</p></div>";
+
+                var radixPoint = op1.indexOf(".");
+
+                if (radixPoint != -1) {
+                    if (radixPoint == 0 || radixPoint == len - 1) {
+                        $(".step-body").html("<div class=\"card\" id=\"question\">" +
+                            "<h1>ত্রুটি!</h1>" +
+                            "<p>ইনপুট চেক কর!</p>" +
+                            "</div>");
+
+                        // Scroll Down to result
+                        $('html, body').animate({
+                            scrollTop: $("#question").offset().top - 10
+                        }, 500);
+
+                        return;
+                    }
+                }
+
+                var intPart = "",
+                    fractionPart = "",
+                    valIntPart = 0,
+                    valFractionPart = 0;
+                if (radixPoint != -1) {
+                    // If radix point found then,
+                    intPart = op1.slice(0, radixPoint);
+                    valIntPart = Number(intPart);
+
+                    fractionPart = op1.slice(radixPoint, len);
+                    valFractionPart = Number(fractionPart);
+
+                } else {
+                    intPart = op1;
+                    valIntPart = Number(intPart);
+
+                    radixPoint = len;
+                }
+
+                htmlString += "<h3 class='step'>সমাধান</h3>";
+
+// 1101.1011
+//   1   3   5   .   5   4   2
+//   ↓   ↓   ↓   ↓   ↓   ↓   ↓
+//  001 011 101  .  101 100 010
+
+                htmlString += "<div class=\"multi-card\">" +
+                    "<pre class=\"example\">";
+
+                htmlString += "<strong>ধাপ ১:</strong> Octal → Binary\n\n";
+
+                // Step 1
+                var temp = " ";
+                var counter = radixPoint - 1;
+                for (var i = 0; i < len; i++) {
+                    // if (op1.charAt(i) == ".")
+                    //     continue;
+                    temp += op1.charAt(i);
+                    counter--;
+                    if (i < len - 1) {
+                        temp += "   ";
+                    }
+                }
+
+                htmlString += temp;
+
+                // Step 2
+                var temp = "\n ";
+                var counter = radixPoint - 1;
+                for (var i = 0; i < len; i++) {
+                    // if (op1.charAt(i) == ".")
+                    //     continue;
+                    temp += "↓";
+                    counter--;
+                    if (i < len - 1) {
+                        temp += "   ";
+                    }
+                }
+
+                htmlString += temp;
+
+                // Step 3
+                var finalVal = "";
+                var temp = "\n";
+                var counter = radixPoint - 1;
+                for (var i = 0; i < len; i++) {
+                    if (op1.charAt(i) == ".") {
+                        finalVal += ".";
+                        temp += " .  ";
+                        continue;
+                    }
+                    finalVal += makeFixedLength(DecimalToBinary(op1.charAt(i)), 3);
+                    temp += makeFixedLength(DecimalToBinary(op1.charAt(i)), 3);
+                    counter--;
+                    if (i < len - 1) {
+                        temp += " ";
+                    }
+                }
+
+                htmlString += temp;
+
+                // -----------------------------------------------
+
+                htmlString += "\n\n<strong>ধাপ ২:</strong> Binary → Hexa\n\n";
+
+                // base whare to convert
+                var toBase = 16;
+                // base where from convert
+                var fromBase = 2;
+
+                var op1 = finalVal;
+
+                var len = op1.length;
+                var newLen = 0;
+
+                // var htmlString = "<div class=\"ques-card\" id=\"question\"><p>" +
+                //     "(" + op1 + ")<sub>" + fromBase + "</sub> কে হেক্সা-ডেসিম্যাল সংখ্যা পদ্ধতিতে রূপান্তর করতে হবে।" +
+                //     "</p></div>";
+
+                var radixPoint = op1.indexOf(".");
+
+                // if (radixPoint != -1) {
+                //     if (radixPoint == 0 || radixPoint == len - 1) {
+                //         $(".step-body").html("<div class=\"card\" id=\"question\">" +
+                //             "<h1>ত্রুটি!</h1>" +
+                //             "<p>ইনপুট চেক কর!</p>" +
+                //             "</div>");
+                //
+                //         // Scroll Down to result
+                //         $('html, body').animate({
+                //             scrollTop: $("#question").offset().top - 10
+                //         }, 500);
+                //
+                //         return;
+                //     }
+                // }
+
+                var intPart = "",
+                    fractionPart = "";
+                var op1Formatted;
+                // valIntPart = 0,
+                // valFractionPart = 0;
+                if (radixPoint != -1) {
+                    // If radix point found then,
+                    intPart = op1.slice(0, radixPoint);
+                    var xtras = 0;
+                    if (intPart.length % 4 != 0)
+                        xtras = 4 - (intPart.length % 4);
+                    intPart = Array(xtras + 1).join("0") + intPart;
+                    // valIntPart = Number(intPart);
+
+                    fractionPart = op1.slice(radixPoint + 1, len);
+                    var xtras = 0;
+                    if (fractionPart.length % 4 != 0)
+                        xtras = 4 - (fractionPart.length % 4);
+                    fractionPart = fractionPart + Array(xtras + 1).join("0");
+
+
+                    // plus one for the dot
+                    newLen += intPart.length + fractionPart.length + 1;
+                    // valFractionPart = Number(fractionPart);
+
+                    op1Formatted = intPart + "." + fractionPart;
+
+                } else {
+                    intPart = op1;
+                    var xtras = 0;
+                    if (intPart.length % 4 != 0)
+                        xtras = 4 - intPart.length % 4;
+                    intPart = Array(xtras + 1).join("0") + intPart;
+                    // valIntPart = Number(intPart);
+                    op1Formatted = intPart;
+
+                    newLen += intPart.length;
+
+                    radixPoint = newLen;
+                }
+
+
+                // htmlString += "<h3 class='step'>সমাধান</h3>";
+
+                //   1 011 101 . 101 100 01
+                // ─── ─── ─── ↓ ─── ─── ───
+                //  ↓   ↓   ↓  ↓  ↓   ↓   ↓
+                // 001 011 101 . 101 100 010
+                // ─── ─── ─── ↓ ─── ─── ───
+                //  ↓   ↓   ↓  ↓  ↓   ↓   ↓
+                //  1   3   5  .  5   4   2
+
+                // htmlString += "<div class=\"multi-card\">" +
+                //     "<pre class=\"example\">";
+
+                // Step 1
+                var temp = "";
+                var repeatCount = 0;
+                var counter = radixPoint - 1;
+                for (var i = 0; i < newLen; i++) {
+                    if (op1Formatted.charAt(i) == ".")
+                        repeatCount--;
+
+                    temp += op1Formatted.charAt(i);
+                    counter--;
+
+                    repeatCount++;
+
+                    if (i < newLen - 1) {
+                        if (repeatCount >= 4 || op1Formatted.charAt(i) == ".") {
+                            temp += " ";
+                            repeatCount = 0;
+                        }
+                    }
+                }
+
+                htmlString += temp;
+
+                // Step 2
+                var temp = "\n";
+                var repeatCount = 0;
+                var counter = radixPoint - 1;
+                for (var i = 0; i < newLen; i++) {
+                    if (op1Formatted.charAt(i) == ".")
+                        repeatCount--;
+
+                    if (op1Formatted.charAt(i) == ".")
+                        temp += "↓";
+                    else
+                        temp += "─";
+                    counter--;
+
+                    repeatCount++;
+
+                    if (i < newLen - 1) {
+                        if (repeatCount >= 4 || op1Formatted.charAt(i) == ".") {
+                            temp += " ";
+                            repeatCount = 0;
+                        }
+                    }
+                }
+
+                htmlString += temp;
+
+                // Step 3
+                var temp = "\n";
+                var repeatCount = 0;
+                var counter = radixPoint - 1;
+                for (var i = 0; i < newLen; i++) {
+                    if (op1Formatted.charAt(i) == ".")
+                        repeatCount--;
+
+                    repeatCount++;
+
+                    if (op1Formatted.charAt(i) == ".")
+                        temp += "↓";
+                    else if (repeatCount == 1 || repeatCount == 2 || repeatCount == 4)
+                        temp += " ";
+                    else {
+                        temp += "↓";
+                    }
+                    counter--;
+
+
+                    if (i < newLen - 1) {
+                        if (repeatCount >= 4 || op1Formatted.charAt(i) == ".") {
+                            temp += " ";
+                            repeatCount = 0;
+                        }
+                    }
+                }
+
+                htmlString += temp;
+
+                // Step 4
+                var temp = "\n",
+                    temp2;
+                var repeatCount = 0;
+                var counter2 = 0,
+                    flag = false;
+                var finalVal = "";
+                var counter = radixPoint - 1;
+                for (var i = 0; i < newLen; i++) {
+                    if (op1Formatted.charAt(i) == ".")
+                        repeatCount--;
+
+                    repeatCount++;
+
+                    if (op1Formatted.charAt(i) == ".") {
+                        temp += ".";
+                        finalVal += ".";
+                        flag = true;
+                    } else if (repeatCount == 1 || repeatCount == 2 || repeatCount == 4)
+                        temp += " ";
+                    else {
+                        if (flag == false)
+                            temp2 = parseInt(op1Formatted.substr(counter2 * 4, 4), fromBase);
+                        else {
+                            temp2 = parseInt(op1Formatted.substr((counter2 * 4) + 1, 4), fromBase);
+                        }
+                        temp += getHexaValue(temp2);
+                        finalVal += getHexaValue(temp2);
+                        counter2++;
+                    }
+                    counter--;
+
+
+                    if (i < newLen - 1) {
+                        if (repeatCount >= 4 || op1Formatted.charAt(i) == ".") {
+                            temp += " ";
+                            repeatCount = 0;
+                        }
+                    }
+                }
+
+                htmlString += temp;
+
+
+
+                // End Precessing
+
+                htmlString += "</pre><div class=\"desc-bottom\">" +
+                    "<pre>(" + opMain + ")<sub>" + fromBaseMain + "</sub> = (" + finalVal + ")<sub>" + toBase + "</sub></pre>";
+
+                htmlString += "</div></div>";
+
+                // -----------------------------------------------
+
+                $(".step-body").html(htmlString);
+
+                // Scroll Down to result
+                $('html, body').animate({
+                    scrollTop: $("#question").offset().top - 10
+                }, 500);
+
+            });
+
+        });
+    </script>
+    <title>১.২.৩ অক্টাল থেকে হেক্সা-ডেসিম্যাল সমাধান</title>
+</head>
+
+<body>
+    <div class="body-content">
+
+        <form class="form">
+            <div class="desc-top">
+                <p>
+                    নিচের বাক্সে অক্টাল সংখ্যা লিখ এবং <kbd>রূপান্তর</kbd> বাটনে ক্লিক কর।
+                </p>
+                <p>
+                    সর্বোচ্চঃ 16 digit (Radix point সহ)
+                </p>
+            </div>
+            <div class="input-elements">
+                <input id="operand1" value="71.52" type="text" pattern="\b([0-7]){1,8}[.]?([0-7]){0,8}\b" title="Only numbers and maximum 16 digit." required></br>
+                <input class="button" name="submit" type="submit" value="রূপান্তর">
+            </div>
+        </form>
+
+        <div class="step-body"></div>
+
+    </div>
+
+    <div class="nav bottom">
+        <a class="button prev" href="#"></a>
+        <!-- <a class="button next" href="#"></a> -->
+    </div>
+
+</body>
+
+</html>

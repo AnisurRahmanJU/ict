@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
+    <script></script>
+    <title>১.১ বিভিন্ন ধরনের সংখ্যা পদ্ধতি</title>
+</head>
+
+<body>
+    <div class="body-content">
+        <div class="multi-card">
+            <div class="desc-top">
+                <h1 class="caption">দশমিক (decimal) সংখ্যা পদ্ধতি</h1>
+                <p>দশমিক সংখ্যা পদ্ধতির ভিত্তি ১০। এতে ব্যবহৃত অংক গুলো হলঃ</p>
+                <blockquote>
+                    <p>0, 1, 2, 3, 4, 5, 6, 7, 8, 9</p>
+                </blockquote>
+                <p>
+                    নিচে (1234)<sub>10</sub> সংখ্যাটির স্থানীয়মান দেখানো হলঃ
+                </p>
+            </div>
+            <pre class="example">1234
+│││└ 4 × 10<sup>0</sup> =    4
+││└─ 3 × 10<sup>1</sup> =   30
+│└── 2 × 10<sup>2</sup> =  200
+└─── 1 × 10<sup>3</sup> = 1000
+              ──────
+               1234</pre>
+        </div>
+
+        <div class="multi-card">
+            <div class="desc-top">
+                <h1 class="caption">বাইনারি (binary) সংখ্যা পদ্ধতি</h1>
+                <p>bi- ব্যবহৃত হয় দুই বুঝাতে। বাইনারি সংখ্যা পদ্ধতির ভিত্তি ২। এতে ব্যবহৃত অংক গুলো হলঃ</p>
+                <blockquote>
+                    <p>0, 1</p>
+                </blockquote>
+                <p>
+                    নিচে (1010)<sub>2</sub> সংখ্যাটির স্থানীয়মান দেখানো হলঃ
+                </p>
+            </div>
+            <pre class="example">1010
+│││└ 0 × 2<sup>0</sup> =  0
+││└─ 1 × 2<sup>1</sup> =  2
+│└── 0 × 2<sup>2</sup> =  0
+└─── 1 × 2<sup>3</sup> =  8
+             ────
+              10</pre>
+               <div class="desc-bottom">
+                   <p>
+                       (1010)<sub>2</sub> এর দশমিক মান 5।
+                   </p>
+               </div>
+        </div>
+
+        <div class="multi-card">
+            <div class="desc-top">
+                <h1 class="caption">অক্টাল (octal) সংখ্যা পদ্ধতি</h1>
+                <p>octa ব্যবহৃত হয় ৮ বুঝাতে। অক্টাল সংখ্যা পদ্ধতির ভিত্তি ৮। এতে ব্যবহৃত অংক গুলো হলঃ</p>
+                <blockquote>
+                    <p>0, 1, 2, 3, 4, 5, 6, 7</p>
+                </blockquote>
+                <p>
+                    নিচে (1357)<sub>8</sub> সংখ্যাটির স্থানীয়মান দেখানো হলঃ
+                </p>
+            </div>
+            <pre class="example">1357
+│││└ 7 × 8<sup>0</sup> =   7
+││└─ 5 × 8<sup>1</sup> =  40
+│└── 3 × 8<sup>2</sup> = 192
+└─── 1 × 8<sup>3</sup> = 512
+             ─────
+              751</pre>
+               <div class="desc-bottom">
+                   <p>
+                       (1357)<sub>8</sub> এর দশমিক মান 751।
+                   </p>
+               </div>
+        </div>
+
+        <div class="multi-card">
+            <div class="desc-top">
+                <h1 class="caption">হেক্সাডেসিম্যাল (hexa-decimal) সংখ্যা পদ্ধতি</h1>
+                <p>hexa ব্যবহৃত হয় ১৬ বুঝাতে। হেক্সাডেসিম্যাল সংখ্যা পদ্ধতির ভিত্তি ১৬। এতে ব্যবহৃত অংক গুলো হলঃ</p>
+                <blockquote>
+                    <p>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F</p>
+                </blockquote>
+                <p>
+                    নিচে (1A2B)<sub>8</sub> সংখ্যাটির স্থানীয়মান দেখানো হলঃ
+                </p>
+            </div>
+            <pre class="example">1A2B
+│││└ 11 × 16<sup>0</sup> =   11
+││└─  2 × 16<sup>1</sup> =   32
+│└── 10 × 16<sup>2</sup> = 2560
+└───  1 × 16<sup>3</sup> = 4096
+               ──────
+                6699</pre>
+               <div class="desc-bottom">
+                   <p>
+                       (1A2B)<sub>16</sub> এর দশমিক মান 6699।
+                   </p>
+               </div>
+        </div>
+
+        <div class="multi-card">
+            <div class="desc-top">
+                <p>নিচে দশমিক, বাইনারি, অক্টাল এবং হেক্সাডেসিম্যাল সংখ্যা পদ্ধতিতে গণনা দেখানো হল।</p>
+            </div>
+            <pre class="example"> Decimal │ Binary │ Octal │ Hexa
+       0 │      0 │     0 │    0
+       1 │      1 │     1 │    1
+       2 │     <strong>10</strong> │     2 │    2
+       3 │     11 │     3 │    3
+       4 │    100 │     4 │    4
+       5 │    101 │     5 │    5
+       6 │    110 │     6 │    6
+       7 │    111 │     7 │    7
+       8 │   1000 │    <strong>10</strong> │    8
+       9 │   1001 │    11 │    9
+      <strong>10</strong> │   1010 │    12 │    A
+      11 │   1011 │    13 │    B
+      12 │   1100 │    14 │    C
+      13 │   1101 │    15 │    D
+      14 │   1110 │    16 │    E
+      15 │   1111 │    17 │    F
+      16 │  10000 │    20 │    <strong>10</strong>
+      .  │      . │     . │    .
+      .  │      . │     . │    .
+      .  │      . │     . │    .</pre>
+            <div class="desc-bottom">
+                <p>একই সংখ্যার মান বিভিন্ন সংখ্যা পদ্ধতি অনুযায়ী আলাদা হয়। যেমনঃ 10 এর মান বাইনারিতে 2, অক্টালে 8, হেক্সাডেসিম্যালে 16।</p>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    <div class="nav bottom">
+        <a class="button prev" href="number_system.html"></a>
+        <a class="button next" href="number_system_conversion.html"></a>
+    </div>
+
+</body>
+
+</html>

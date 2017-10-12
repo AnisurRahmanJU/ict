@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
+    <script></script>
+    <title>১.৩.১ বাইনারি যোগ</title>
+</head>
+
+<body>
+    <div class="body-content">
+        <div class="multi-card">
+            <div class="desc-top">
+                <p>বাইনারি যোগে নিচের সূত্র গুলো ব্যবহার করা হয়ঃ</p>
+            </div>
+            <table class="rules">
+                <tr>
+                    <th width="50%"></th>
+                    <th width="25%">ফলাফলে বসবে</th>
+                    <th width="25%">হাতে থাকে (Carry)</th>
+                </tr>
+                <tr>
+                    <td>0 + 0 = 0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>0 + 1 = 1</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1 + 0 = 1</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>1 + 1 = 10</td>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>1 + 1 + 1 = 11</td>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="multi-card">
+            <div class="desc-top">
+                <p>বাইনারি যোগ করার সময় সাধারণ যোগের মত সব কিছু লিখা হয়। তবে ক্যারি (হাতে রাখা সংখ্যা) উপরে লিখা হয়, যাতে যোগ করতে ভূল না হয়।</p>
+            </div>
+            <pre class="example"><span class="reminder">        ← ক্যারি বিট</span>
+───────
+<span class="operand"> 101011 ← প্রথম সংখ্যা</span>
+<span class="operand">+011011 ← দ্বিতীয় সংখ্যা</span>
+───────
+<span class="result">        ← ফলাফল</span></pre>
+        </div>
+
+        <div class="ques-card">
+            <p>(101011)<sub>2</sub> এবং (011011)<sub>2</sub> যোগ কর।</p>
+        </div>
+
+        <h3 class="step">ধাপ ১</h3>
+        <div class="multi-card">
+            <pre class="example"><span class="reminder">     <strong>1</strong></span>
+───────
+<span class="operand"> 10101<strong>1</strong></span>
+<span class="operand">+01101<strong>1</strong></span>
+───────
+<span class="result">      <strong>0</strong></span></pre>
+            <div class="desc-bottom">
+                <blockquote>
+                    <p>1 + 1 = 10</p>
+                </blockquote>
+                <p>ফলাফলে বসবে 0, ক্যারি (হাতে থাকে) 1</p>
+            </div>
+        </div>
+        <h3 class="step">ধাপ ২</h3>
+        <div class="multi-card">
+            <pre class="example"><span class="reminder">    <strong>1</strong><strong
+                    class="operand">1</strong></span>
+───────
+<span class="operand"> 1010<strong>1</strong>1</span>
+<span class="operand">+0110<strong>1</strong>1</span>
+───────
+<span class="result">     <strong>1</strong>0</span></pre>
+            <div class="desc-bottom">
+                <blockquote>
+                    <p>1+1+1 = 11</p>
+                </blockquote>
+                <p>ফলাফলে বসবে 1 ক্যারি 1</p>
+            </div>
+        </div>
+        <h3 class="step">ধাপ ৩</h3>
+        <div class="multi-card">
+            <pre class="example"><span class="reminder">   <strong>0</strong><strong
+                    class="operand">1</strong>1</span>
+───────
+<span class="operand"> 101<strong>0</strong>11</span>
+<span class="operand">+011<strong>0</strong>11</span>
+───────
+<span class="result">    <strong>1</strong>10</span></pre>
+            <div class="desc-bottom">
+                <blockquote>
+                    <p>1+0+0 = 1</p>
+                </blockquote>
+                <p>ফলাফলে বসবে 1 ক্যারি 0</p>
+            </div>
+        </div>
+        <h3 class="step">ধাপ ৪</h3>
+        <div class="multi-card">
+            <pre class="example"><span class="reminder">  <strong>1</strong><strong
+                    class="operand">0</strong>11</span>
+───────
+<span class="operand"> 10<strong>1</strong>011</span>
+<span class="operand">+01<strong>1</strong>011</span>
+───────
+<span class="result">   <strong>0</strong>110</span></pre>
+            <div class="desc-bottom">
+                <blockquote>
+                    <p>0+1+1 = 10</p>
+                </blockquote>
+                <p>ফলাফলে বসবে 0 ক্যারি 1</p>
+            </div>
+        </div>
+        <h3 class="step">ধাপ ৫</h3>
+        <div class="multi-card">
+            <pre class="example"><span class="reminder"> <strong>1</strong><strong
+                    class="operand">1</strong>011</span>
+───────
+<span class="operand"> 1<strong>0</strong>1011</span>
+<span class="operand">+0<strong>1</strong>1011</span>
+───────
+<span class="result">  <strong>0</strong>0110</span></pre>
+            <div class="desc-bottom">
+                <blockquote>
+                    <p>1+0+1 = 10</p>
+                </blockquote>
+                <p>ফলাফলে বসবে 1 ক্যারি 0</p>
+            </div>
+        </div>
+        <h3 class="step">ধাপ ৬</h3>
+        <div class="multi-card">
+            <pre class="example"><span class="reminder"><strong>1</strong><strong
+                    class="operand">1</strong>1011</span>
+───────
+<span class="operand"> <strong>1</strong>01011</span>
+<span class="operand">+<strong>0</strong>11011</span>
+───────
+<span class="result"> <strong>0</strong>00110</span></pre>
+            <div class="desc-bottom">
+                <blockquote>
+                    <p>1+1+1 = 11</p>
+                </blockquote>
+                <p>ফলাফলে বসবে 1 ক্যারি 1</p>
+            </div>
+        </div>
+        <h3 class="step">ধাপ ৭</h3>
+        <div class="multi-card">
+            <pre class="example"><span class="reminder"><strong
+                    class="operand">1</strong>11011</span>
+───────
+<span class="operand"> 101011</span>
+<span class="operand">+011011</span>
+───────
+<span class="result"><strong>1</strong>000110</span></pre>
+            <div class="desc-bottom">
+                <p>বাকি থাকা ক্যারি 1 ফলাফলে বসে যাবে।</p>
+            </div>
+        </div>
+
+        <div class="solution-button-panel">
+            <a class="button" href="binary_add_solution.html">সমাধান</a>
+        </div>
+    </div>
+
+    <div class="nav bottom">
+        <a class="button prev" href="conversion_bin_oct_hexa.html"></a>
+        <a class="button next" href="binary_sub.html"></a>
+    </div>
+
+
+</body>
+
+</html>

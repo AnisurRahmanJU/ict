@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/common.js"></script>
+    <script>
+        $(document).ready(function() {
+            function close_accordion_section() {
+                $('.accordion .accordion-section-title').removeClass('active');
+                $('.accordion .accordion-section-content').slideUp().removeClass('open');
+            }
+
+            $('.accordion-section-title').click(function(e) {
+                // Grab current anchor value
+                var currentAttrValue = $(this).attr('href');
+
+                if ($(e.target).is('.active')) {
+                    // close_accordion_section();
+                    $(this).removeClass('active');
+                    $('.accordion ' + currentAttrValue).slideUp().removeClass('open');
+                } else {
+                    // close_accordion_section();
+
+                    // Add active class to section title
+                    $(this).addClass('active');
+                    // Open up the hidden content panel
+                    $('.accordion ' + currentAttrValue).slideDown().addClass('open');
+                }
+
+                e.preventDefault();
+            });
+        });
+    </script>
+    <title>আইসিটি টিউটর</title>
+</head>
+
+<body>
+
+    <div class="accordion">
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#number_system"><span class="ch_id">১</span>সংখ্যা পদ্ধতি</a>
+            <div id="number_system" class="accordion-section-content">
+                <ul class="menu">
+                    <li><a class="active" href="number_system.html"><span class="chapter_id">১</span>সংখ্যা পদ্ধতি</a>
+                    </li>
+                    <li><a class="active" href="four_number_system.html"><span class="chapter_id">১.১</span>বিভিন্ন ধরনের সংখ্যা পদ্ধতি</a></li>
+                    <li><a class="active" href="number_system_conversion.html"><span class="chapter_id">১.২</span>সংখ্যা পদ্ধতির রূপান্তর</a>
+                    </li>
+                    <li><a class="active" href="conversion_decimal_to_all.html"><span class="chapter_id">১.২.১</span>দশমিক থেকে সব<span class="has-soln"></span></a></li>
+                    <li><a class="active" href="conversion_all_to_decimal.html"><span class="chapter_id">১.২.২</span>সব থেকে দশমিক<span class="has-soln"></span></a></li>
+                    <li><a class="active" href="conversion_bin_oct_hexa.html"><span class="chapter_id">১.২.৩</span>বাইনারি, অক্টাল, হেক্সা<span class="has-soln"></a></li>
+                    <li>
+                        <p><span class="chapter_id">১.৩</span>বাইনারি গণিত</p>
+                    </li>
+                    <li><a class="active" href="binary_add.html"><span class="chapter_id">১.৩.১</span>বাইনারি যোগ<span class="has-soln"></span></a></li>
+                    <li><a class="active" href="binary_sub.html"><span class="chapter_id">১.৩.২</span>বাইনারি বিয়োগ<span class="has-soln"></span></a></li>
+                    <li><a class="active" href="signed_number.html"><span class="chapter_id">১.৪</span>চিহ্নযুক্ত সংখ্যা</a></li>
+                    <li><a class="active" href="ones_complement.html"><span class="chapter_id">১.৪.১</span>এক এর পরিপূরক<span class="has-soln"></a></li>
+                    <li><a class="active" href="twos_complement.html"><span class="chapter_id">১.৪.২</span>দুই এর পরিপূরক<span class="has-soln"></a></li>
+                    <li><a class="active" href="twos_complement_add.html"><span class="chapter_id">১.৪.২.১</span>দুই এর পরিপূরকে যোগ<span class="has-soln"></a></a></li>
+                    <li><a class="active" href="twos_complement_sub.html"><span class="chapter_id">১.৪.২.২</span>দুই এর পরিপূরকে বিয়োগ<span class="has-soln"></a></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#boolean_algebra"><span class="ch_id">২</span>বুলিয়ান অ্যালজেবরা</a>
+            <div id="boolean_algebra" class="accordion-section-content">
+                <ul class="menu">
+                    <li><a class="active" href="bit.html"><span class="chapter_id">#</span>বিট নিয়ে সব কিছু</a></li>
+                    <li><a class="active" href="boolean_algebra.html"><span class="chapter_id">২</span>বুলিয়ান অ্যালজেবরা</a></li>
+                    <li><a class="active" href="boolean_theorems.html"><span class="chapter_id">২.১</span>বুলিয়ান উপপাদ্য সমূহ</a></li>
+
+                    <li>
+                        <p><span class="chapter_id">২.২</span>লজিক ফাংশন সরলীকরণ</p>
+                    </li>
+                    <li><a class="active" href="logic_fn_simplification_1.html"><span class="chapter_id">২.২.১</span>লজিক ফাংশন সরলীকরণ ১</a></li>
+                    <li><a class="active" href="logic_fn_simplification_2.html"><span class="chapter_id">২.২.২</span>লজিক ফাংশন সরলীকরণ ২</a></li>
+                    <li><a class="active" href="logic_fn_simplification_3.html"><span class="chapter_id">২.২.৩</span>লজিক ফাংশন সরলীকরণ ৩</a></li>
+                    <li><a class="active" href="logic_fn_simplification_4.html"><span class="chapter_id">২.২.৪</span>লজিক ফাংশন সরলীকরণ ৪</a></li>
+                    <li><a class="active" href="logic_fn_simplification_5.html"><span class="chapter_id">২.২.৫</span>লজিক ফাংশন সরলীকরণ ৫</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#logic_gate"><span class="ch_id">৩</span>লজিক গেইট</a>
+            <div id="logic_gate" class="accordion-section-content">
+                <ul class="menu">
+                    <li><a class="active" href="logic_gate.html"><span class="chapter_id">৩</span>লজিক গেইট</a>
+                    </li>
+                    <li><a class="active" href="basic_gate.html"><span class="chapter_id">৩.১</span>মৌলিক লজিক গেইট</a></li>
+                    <li><a class="active" href="universal_gate.html"><span class="chapter_id">৩.২</span>সর্বজনীন গেইট</a></li>
+                    <li><a class="active" href="special_gate.html"><span class="chapter_id">৩.৩</span>বিশেষ গেইট</a></li>
+                    <li>
+                        <p><span class="chapter_id">৩.৪</span>সর্বজনীন গেইট ব্যবহার করে মৌলিক গেইট তৈরি</p>
+                    </li>
+                    <li><a class="active" href="universal_gates_using_nor.html"><span class="chapter_id">৩.৪.১</span>NOR গেইট ব্যবহার করে মৌলিক গেইট তৈরি</a></li>
+                    <li><a class="active" href="universal_gates_using_nand.html"><span class="chapter_id">৩.৪.২</span>NAND গেইট ব্যবহার করে মৌলিক গেইট তৈরি</a></li>
+                    <li>
+                        <p><span class="chapter_id">৩.৫</span>সর্বজনীন গেইট ব্যবহার করে বিশেষ গেইট তৈরি</p>
+                    </li>
+                    <li><a class="active" href="special_gates_using_nor.html"><span class="chapter_id">৩.৫.১</span>NOR গেইট ব্যবহার করে বিশেষ গেইট তৈরি</a></li>
+                    <li><a class="active" href="special_gates_using_nand.html"><span class="chapter_id">৩.৫.২</span>NAND গেইট ব্যবহার করে বিশেষ গেইট তৈরি</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#html"><span class="ch_id">৪</span>এইচটিএমএল</a>
+
+            <div id="html" class="accordion-section-content">
+                <ul class="menu">
+                    <li><a class="active" href="html_4_1.html"><span class="chapter_id">৪.১</span>প্রাথমিক আলোচনা</a></li>
+                    <li><a class="active" href="html_4_2.html"><span class="chapter_id">৪.২</span>ট্যাগ এবং এলিমেন্ট</a></li>
+                    <li><a class="active" href="html_4_3.html"><span class="chapter_id">৪.৩</span>HTML ফাইল তৈরি</a></li>
+                    <li><a class="active" href="html_4_4.html"><span class="chapter_id">৪.৪</span>HTML ফাইলের বিভিন্ন অংশ</a></li>
+                    <li><a class="active" href="html_4_5.html"><span class="chapter_id">৪.৫</span>&lt;head&gt; এর ট্যাগ সমূহ</a></li>
+                    <li><a class="active" href="html_4_6.html"><span class="chapter_id">৪.৬</span>&lt;body&gt; এর ট্যাগ সমূহ</a></li>
+                    <li><a class="active" href="html_4_7.html"><span class="chapter_id">৪.৭</span>তালিকা তৈরি করা</a></li>
+                    <li><a class="active" href="html_4_8.html"><span class="chapter_id">৪.৮</span>ছবি যুক্ত করা</a></li>
+                    <li><a class="active" href="html_4_9.html"><span class="chapter_id">৪.৯</span>টেবিল তৈরি করা</a></li>
+                    <li><a class="active" href="html_4_10.html"><span class="chapter_id">৪.১০</span>হাইপারলিঙ্ক তৈরি করা</a></li>
+                    <li><a class="active" href="html_4_11.html"><span class="chapter_id">৪.১১</span>মন্তব্য লিখা</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#c_prog_lang"><span class="ch_id">৫</span>সি প্রোগ্রামিং ভাষা</a>
+
+            <div id="c_prog_lang" class="accordion-section-content">
+                <ul class="menu">
+                    <li><a class="active" href="c_5.html"><span class="chapter_id">৫</span>সি প্রোগ্রামিং ভাষা</a></li>
+                    <li><a class="active" href="c_5.0.html"><span class="chapter_id">৫.০</span>সূচনা</a></li>
+                    <li><a class="active" href="c_5.1.html"><span class="chapter_id">৫.১</span>ডাটা টাইপ</a></li>
+                    <li><a class="active" href="c_5.2.html"><span class="chapter_id">৫.২</span>ডাটা টাইপ মডিফাইয়ার</a></li>
+                    <li><a class="active" href="c_5.3.html"><span class="chapter_id">৫.৩</span>ভ্যারিয়েবল</a></li>
+                    <li><a class="active" href="c_5.4.html"><span class="chapter_id">৫.৪</span>ইনপুট আউটপুট</a></li>
+                    <li><a class="active" href="c_5.5.html"><span class="chapter_id">৫.৫</span>অপারেটর</a></li>
+                    <li><a class="active" href="c_5.6.html"><span class="chapter_id">৫.৬</span>কন্ডিশনাল স্টেস্টমেন্ট</a></li>
+                    <li><a class="active" href="c_5.6.1.html"><span class="chapter_id">৫.৬.১</span>if</a></li>
+                    <li><a class="active" href="c_5.6.2.html"><span class="chapter_id">৫.৬.২</span>if…else</a></li>
+                    <li><a class="active" href="c_5.6.3.html"><span class="chapter_id">৫.৬.৩</span>else…if</a></li>
+                    <li><a class="active" href="c_5.6.4.html"><span class="chapter_id">৫.৬.৪</span>switch</a></li>
+                    <li><a class="active" href="c_5.7.html"><span class="chapter_id">৫.৭</span>লুপ</a></li>
+                    <li><a class="active" href="c_5.7.1.html"><span class="chapter_id">৫.৭.১</span>for loop</a></li>
+                    <li><a class="active" href="c_5.7.2.html"><span class="chapter_id">৫.৭.২</span>while loop</a></li>
+                    <li><a class="active" href="c_5.7.3.html"><span class="chapter_id">৫.৭.৩</span>do while loop</a></li>
+                    <li><a class="active" href="c_5.8.html"><span class="chapter_id">৫.৮</span>অ্যারে</a></li>
+                    <li>
+                        <p><span class="chapter_id">৫.৯</span>কিছু প্রোগ্রামিং সমস্যা ও সমাধান</p>
+                    </li>
+                    <li><a class="active" href="c_p1.html"><span class="chapter_id">৫.৯.১</span>সমস্যা ১</a></li>
+                    <li><a class="active" href="c_p2.html"><span class="chapter_id">৫.৯.২</span>সমস্যা ২</a></li>
+                    <li><a class="active" href="c_p3.html"><span class="chapter_id">৫.৯.৩</span>সমস্যা ৩</a></li>
+                    <li><a class="active" href="c_p4.html"><span class="chapter_id">৫.৯.৪</span>সমস্যা ৪</a></li>
+                    <li><a class="active" href="c_p5.html"><span class="chapter_id">৫.৯.৫</span>সমস্যা ৫</a></li>
+                    <li><a class="active" href="c_p6.html"><span class="chapter_id">৫.৯.৬</span>সমস্যা ৬</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="accordion-section">
+            <a class="accordion-section-title" href="#database"><span class="ch_id">৬</span>SQL</a>
+
+            <div id="database" class="accordion-section-content">
+                <ul class="menu">
+                    <li><a class="active" href="sql_6.html"><span class="chapter_id">৬</span>SQL</a></li>
+                    <li><a class="active" href="sql_6_1.html"><span class="chapter_id">৬.১</span>CREATE স্টেটমেন্ট</a></li>
+                    <li><a class="active" href="sql_6_2.html"><span class="chapter_id">৬.২</span>INSERT স্টেটমেন্ট</a></li>
+                    <li><a class="active" href="sql_6_3.html"><span class="chapter_id">৬.৩</span>SELECT স্টেটমেন্ট</a></li>
+                    <li><a class="active" href="sql_6_4.html"><span class="chapter_id">৬.৪</span>WHERE কী-ওয়ার্ড</a></li>
+                    <li><a class="active" href="sql_6_5.html"><span class="chapter_id">৬.৫</span>AND & OR অপারেটর</a></li>
+                    <li><a class="active" href="sql_6_6.html"><span class="chapter_id">৬.৬</span>ORDER BY কী-ওয়ার্ড</a></li>
+                    <li><a class="active" href="sql_6_7.html"><span class="chapter_id">৬.৭</span>UPDATE স্টেটমেন্ট</a></li>
+                    <li><a class="active" href="sql_6_8.html"><span class="chapter_id">৬.৮</span>DELETE স্টেটমেন্ট</a></li>
+                    <li><a class="active" href="sql_6_9.html"><span class="chapter_id">৬.৯</span>ALTER কী-ওয়ার্ড</a></li>
+                    <li><a class="active" href="sql_6_10.html"><span class="chapter_id">৬.১০</span>DROP কী-ওয়ার্ড</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

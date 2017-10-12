@@ -1,0 +1,1160 @@
+/*
+Last Update: 10 Jan 2017
+*/
+
+@charset "utf-8";
+@font-face {
+    font-family: Ubuntu;
+    src: url(fonts/Ubuntu-Regular.ttf);
+}
+
+@font-face {
+    font-family: Ubuntu;
+    src: url(fonts/Ubuntu-Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: SourceCodePro;
+    src: url(fonts/SourceCodePro-Regular.ttf);
+}
+
+@font-face {
+    font-family: SourceCodeProOnlyNumbers;
+    src: url(fonts/SourceCodePro-Regular.ttf);
+    unicode-range: U+30-39;
+}
+
+@font-face {
+    font-family: SourceCodePro;
+    src: url(fonts/SourceCodePro-Bold.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Noto Sans Bengali";
+    src: url(fonts/NotoSansBengali-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Noto Sans Bengali";
+    src: url(fonts/NotoSansBengali-Bold.ttf);
+    font-weight: bold;
+}
+
+html, body {
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+    font-style: normal
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, input, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    font-family: SourceCodeProOnlyNumbers, Ubuntu, "Noto Sans Bengali", sans-serif;
+    font-style: normal;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
+*:focus {
+    outline: none;
+}
+
+body {
+    background: #eee;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #555;
+    padding: 10px 0 5px;
+}
+
+h1, h2, h3, .caption {
+    font-size: 1.1em;
+    border-bottom: 1px solid #ccc;
+}
+
+h4, h5, h6 {
+    font-size: 1em;
+}
+
+hr {
+    border: 0;
+    border-top: 3px dotted #90a4ae;
+}
+
+a, a:hover, a:active, a:visited {
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+a, a:visited {
+    color: #E53935;
+    font-size: 1em;
+    border-bottom: solid 2px #F44336;
+    transition: all .2s ease-in-out;
+}
+
+a:hover, a:active {
+    border-bottom: none;
+    border-bottom: solid 2px #fff;
+    transition: all .2s ease-in-out;
+}
+
+strong {
+    color: black;
+    text-shadow: 0 0 1px #fff;
+}
+
+pre, pre span, code, code strong {
+    font-family: SourceCodePro, monospace !important;
+}
+
+blockquote {
+    font-style: italic;
+    overflow: auto;
+    margin: 10px;
+    border-left: 6px solid #607d8b;
+    background: rgba(96, 125, 139, .08);
+    padding: 0 10px;
+}
+
+blockquote p {
+    font-style: italic;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+svg {
+    max-height: 100%;
+}
+
+kbd {
+    display: inline-block;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 0px 7px;
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #ddd;
+    font-size: .85em;
+}
+
+
+/*
+Top-Bottom constant margin
+*/
+
+ol, ul {
+    padding-left: 1.5em;
+    margin: 10px 0;
+}
+
+ol {
+    list-style-type: bengali;
+}
+
+div {
+    margin: 15px 0;
+}
+
+
+/*
+Paddings
+*/
+
+a, p, h1, h2, h3, h4, h5, h6 {
+    margin: 5px 0;
+}
+
+p {
+    line-height: 24px;
+}
+
+li {
+    margin: 5px 0;
+}
+
+pre {
+    margin: 10px 0;
+}
+
+
+/*
+Body Content
+*/
+
+.body-content {
+    margin: 10px 10px 50px;
+}
+
+
+/*
+H3 tag for showing step
+*/
+
+h3.step {
+    font-weight: normal;
+    font-size: 1.3em;
+    display: block;
+    width: 4em;
+    height: 4em;
+    border-radius: 50%;
+    line-height: 4em;
+    text-align: center;
+    background: #f44336;
+    margin: 10px auto;
+    color: white;
+    padding: 0;
+}
+
+
+/*
+Math operands
+*/
+
+span.operand strong {
+    color: #ff5252;
+}
+
+span.result strong {
+    color: #558b2f;
+}
+
+span.reminder strong, span.borrow strong {
+    color: #03a9f4;
+}
+
+strong.operand {
+    color: #ff5252 !important;
+}
+
+strong.result {
+    color: #009688 !important;
+}
+
+strong.reminder {
+    color: #ffc107 !important;
+}
+
+
+/*
+Step part
+*/
+
+.multi-card div.desc-top, .multi-card div.desc-bottom, .multi-card div.desc-middle, .multi-card div.image {
+    margin: 0;
+    padding: 10px;
+    overflow: auto;
+}
+
+.multi-card p.caption, .multi-card h1, .card h1, .card p.caption, .note h1, .note p.caption {
+    font-weight: bold;
+}
+
+.multi-card div.desc-top, div.multi-card div.desc-middle {
+    border-bottom: 3px solid #607d8b;
+}
+
+.multi-card div.desc-bottom, div.multi-card div.desc-middle {
+    border-top: 3px solid #607d8b;
+}
+
+.multi-card>*:first-child {
+    border-top-left-radius: 2px !important;
+    border-top-right-radius: 2px !important;
+}
+
+.multi-card>*:last-child {
+    border-bottom-left-radius: 2px !important;
+    border-bottom-right-radius: 2px !important;
+}
+
+
+/* Tables */
+
+.multi-card table.rules, div.table {
+    margin: 0;
+}
+
+
+/* Images */
+
+.multi-card div.image {
+    padding: 10px;
+    background: url(png/grid.png);
+}
+
+.multi-card div.image footer {
+    margin-top: 10px;
+    text-align: center;
+    color: #555;
+}
+
+
+/* Editor */
+
+.multi-card .editor {
+    box-shadow: none;
+    margin: 0;
+    border-radius: 0;
+    overflow: auto;
+}
+
+.multi-card .editor .iframe {
+    border-radius: 0;
+}
+
+
+/*
+Cards
+*/
+
+.card, .multi-card, .note, .form, .ques-card, .editor {
+    margin: 14px 0 24px;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 1px 4px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    background: #fff;
+}
+
+.card, .note, .ques-card {
+    padding: 10px;
+    overflow: auto;
+}
+
+
+/*
+Question card
+*/
+
+.ques-card {
+    border-left: 3px solid #f44336;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.ques-card::before {
+    content: 'প্রশ্ন';
+    display: inline-block;
+    padding: 0 10px;
+    margin: 0 0 0 -10px;
+    font-size: 14px;
+    font-style: normal;
+    color: #f44336;
+    text-align: center;
+}
+
+
+/*
+Note Division
+*/
+
+.note {
+    border-left: 3px solid #ffc400;
+}
+
+
+/*
+pre tag to show example
+*/
+
+pre.example, .multi-card>pre {
+    margin: 0;
+    overflow-x: auto;
+    background: #f5f2f0;
+    padding: 5px 10px;
+    color: #455a64 !important;
+    text-shadow: 0 1px white;
+}
+
+
+/*
+execution preview
+*/
+
+div.exe-preview {
+    margin: 0;
+    overflow: auto;
+    background: #607d8b;
+}
+
+.exe-preview pre::before {
+    content: "ফলাফল";
+    display: block;
+    text-transform: uppercase;
+    font-size: .8em;
+    font-weight: bold;
+    color: #CFD8DC;
+}
+
+.exe-preview pre {
+    overflow: auto;
+    margin: 0 10px;
+    padding: 5px 0px;
+    color: #fff !important;
+    text-shadow: 0 1px #37474F;
+}
+
+
+/*
+Prism overrides
+*/
+
+pre[class*="language-"] {
+    margin: 0 !important;
+    padding-top: 2px !important;
+    padding-bottom: 3px !important;
+}
+
+.token.operator {
+    background: transparent !important;
+}
+
+.line-numbers .line-numbers-rows {
+    border-right: 1px solid #ddd !important;
+}
+
+
+/*
+Button
+*/
+
+.button {
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 1px 4px rgba(0, 0, 0, 0.12);
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    padding: 5px 10px;
+    border-radius: 2px;
+    background: #ffffff;
+    color: #9e9e9e;
+    display: inline-block;
+    font-weight: bold;
+    color: #424242;
+    border: none;
+    margin: 10px;
+}
+
+.button:active {
+    background: #e4e4e4;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.16), 0px 3px 10px rgba(0, 0, 0, 0.23);
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+.button:hover {
+    /* Reset */
+    border: none;
+}
+
+
+/*
+Menu for unordered list ancore list.
+Made for index page.
+*/
+
+ul.menu {
+    margin: 0;
+    list-style: none;
+    padding-left: 0;
+}
+
+ul.menu li {
+    margin: 0;
+}
+
+ul.menu li a.active {
+    font-weight: bold;
+    color: #455a64;
+}
+
+ul.menu li a, ul.menu li p {
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+    padding: 5px 10px;
+    background: #ffffff;
+    border-top: 1px solid #ddd;
+    color: #b0bec5;
+    display: block;
+    line-height: 2.5em;
+}
+
+ul.menu li p {
+    background: #f5f5f5;
+    font-weight: bold;
+    color: #78909c;
+}
+
+ul.menu li a:active {
+    background: #e4e4e4;
+    transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+}
+
+span.chapter_id {
+    color: #607d8b;
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+span.has-soln::before {
+    content: "সমাধান";
+    margin-left: 5px;
+    font-weight: normal;
+    font-size: .8em;
+    padding: 3px 5px;
+    background: #ff5252;
+    color: #fff;
+    border-radius: 3px;
+}
+
+
+/**
+ * Index Accordion menu
+ */
+
+
+/*----- Accordion -----*/
+
+.accordion, .accordion * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+}
+
+.accordion a {
+    /* Fixing Inherit Things */
+    border-bottom: none;
+}
+
+.accordion span.ch_id {
+    background: #607d8b;
+    margin-right: 10px;
+    color: #fff;
+    height: 2em;
+    width: 2em;
+    border-radius: 50%;
+    line-height: 2em;
+    text-align: center;
+    display: block;
+    float: left;
+    transition: all linear 0.15s;
+}
+
+.accordion-section-title {
+    line-height: 2em;
+}
+
+.accordion .active span.ch_id {
+    background: #b71c1c;
+}
+
+.accordion {
+    overflow: hidden;
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+}
+
+
+/*----- Section Titles -----*/
+
+.accordion-section-title, .accordion-section-title:hover, .accordion-section-title:visited {
+    width: 100%;
+    padding: 10px;
+    display: inline-block;
+    border-top: 1px solid #ddd;
+    border-bottom: none;
+    transition: all linear 0.15s;
+    /* Type */
+    font-size: 1.200em;
+    /*text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);*/
+    color: #607d8b;
+}
+
+.accordion-section-title.active {
+    background: #ff5252;
+    /* Type */
+    text-decoration: none;
+    color: #fff;
+}
+
+.accordion-section:first-child .accordion-section-title {
+    border-top: none;
+}
+
+
+/*----- Section Content -----*/
+
+.accordion-section-content {
+    padding: 0;
+    display: none;
+}
+
+
+/*
+Navigation Bar Bottom
+*/
+
+.nav.bottom {
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    border: 0;
+    padding: 0;
+    z-index: 999;
+}
+
+.nav {
+    margin: 0;
+}
+
+.nav a {
+    width: 32px;
+    height: 32px;
+    /* Reset Inherit Styles */
+    border-bottom: none;
+}
+
+.nav a.next {
+    float: right;
+}
+
+.nav a.next::after {
+    display: inline-block;
+    content: "→";
+    font-family: SourceCodePro;
+    font-weight: bold;
+    font-size: 23px;
+    line-height: 32px;
+}
+
+.nav a.prev {
+    float: left;
+}
+
+.nav a.prev::before {
+    display: inline-block;
+    content: "←";
+    font-family: SourceCodePro;
+    font-weight: bold;
+    font-size: 23px;
+    line-height: 32px;
+}
+
+.nav .button {
+    background: #ff5252;
+    color: #fff;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0 6px 8px;
+}
+
+.nav .button:active {
+    background: #e57373;
+}
+
+
+/*
+Rules Table
+*/
+
+.table {
+    overflow: auto;
+}
+
+table.rules {
+    background: #fff;
+    width: 100%;
+    border-collapse: collapse;
+    border-style: hidden;
+    /* hide standard table (collapsed) border */
+    box-shadow: 0 0 3px #bbb;
+}
+
+table.rules td, table.rules th {
+    border: 1px solid #e5e5e5;
+    padding: 2px 4px;
+}
+
+table.rules th {
+    background: #eee;
+}
+
+table.rules th, table.rules td {
+    padding: 5px 10px;
+}
+
+table.rules caption {
+    margin: 10px 0;
+    color: #666;
+    font-weight: bold;
+}
+
+
+/*
+show step form
+*/
+
+.form {
+    overflow: auto;
+    padding: 0;
+    background: #607d8b;
+}
+
+.form input[type=text] {
+    transition: all linear .2s;
+}
+
+.form input[type=text]:invalid {
+    box-shadow: none;
+    border-right: 3px solid #f44336 !important;
+}
+
+.form input[type=text]:valid {
+    box-shadow: none;
+    border-right: 3px solid #8bc34a !important;
+}
+
+.form input.button {
+    float: right;
+}
+
+.form .desc-top {
+    background: #fff;
+    padding: 10px;
+    margin: 0 0 10px;
+}
+
+.input-elements {
+    padding: 0 10px;
+}
+
+.form input[type=text] {
+    background: #78909c;
+    width: 100%;
+    color: #fff;
+    box-sizing: border-box;
+    border: 1px solid #546e7a;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin: 5px 0;
+    font-family: SourceCodePro;
+    font-size: 18px;
+}
+
+
+/*
+HTML Editor
+*/
+
+.editor {
+    background: #607d8b;
+}
+
+.editor div {
+    margin: 0;
+}
+
+.editor .desc-top, .editor .iframe {
+    background: #fff;
+    padding: 10px;
+    /*margin: 0 0 10px;*/
+}
+
+.editor .textarea, .editor .iframe {
+    padding: 10px;
+}
+
+.editor textarea {
+    resize: vertical;
+    height: 5em;
+    overflow: auto;
+    background: #78909c;
+    width: 100%;
+    color: #fff;
+    box-sizing: border-box;
+    border: 1px solid #546e7a;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin: 0;
+    font-family: SourceCodePro;
+    font-size: 14px;
+}
+
+.editor .iframe {
+    padding: 10px;
+}
+
+.editor iframe {
+    width: 100%;
+}
+
+.editor>*:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.editor>*:last-child {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+
+
+/*
+Solution button panel
+*/
+
+.solution-button-panel, .button-panel {
+    background: #f44336;
+    text-align: center;
+    border-radius: 2px;
+}
+
+.solution-button-panel a[href="#"] {
+    color: #90a4ae;
+    opacity: .9;
+}
+
+
+/*
+MathJax CSS
+*/
+
+.right .MathJax_Display {
+    text-align: right !important;
+}
+
+.left .MathJax_Display {
+    text-align: left !important;
+}
+
+
+/*
+On/Off flip switch
+*/
+
+.onoffswitch {
+    position: relative;
+    width: 90px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+
+.onoffswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #ECEFF1;
+    border-radius: 20px;
+}
+
+.onoffswitch-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    font-size: 20px;
+    color: white;
+    font-family: SourceCodePro;
+    box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+    content: "1";
+    padding-left: 30px;
+    background-color: #689f38;
+    color: #FFFFFF;
+}
+
+.onoffswitch-inner:after {
+    content: "0";
+    padding-right: 30px;
+    background-color: #FF5252;
+    color: #FFFFFF;
+    text-align: right;
+}
+
+.onoffswitch-switch {
+    display: block;
+    width: 18px;
+    margin: 6px;
+    background: rgba(0, 0, 0, .3);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 56px;
+    border: 2px solid #ECEFF1;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+    right: 0px;
+}
+
+
+/* ----------------------- Color Classes ------------------------- */
+
+.blue {
+    color: #1565C0;
+    font-weight: bold;
+}
+
+.red {
+    color: #C62828;
+    font-weight: bold;
+}
+
+
+/* ---------------------- Preview Browser ------------------------ */
+
+.browserui {
+    margin: 15px 25px;
+    border-radius: 5px;
+    border: 2px solid #333;
+}
+
+.previewbrowser {
+    padding: 15px;
+    font-size: 18px;
+    background-color: #fff;
+    border-radius: 3px 3px;
+    margin: 0;
+}
+
+.browserui p.title {
+    background-color: #333;
+    margin: 0;
+    padding: 2px;
+    text-align: center;
+    color: #fff;
+    text-shadow: none;
+}
+
+.previewbrowser, .previewbrowser a, .previewbrowser a:visited, .previewbrowser a:hover, .previewbrowser p, .previewbrowser ul, .previewbrowser ol, .previewbrowser li, .previewbrowser sub, .previewbrowser sup, .previewbrowser small, .previewbrowser big, .previewbrowser h1, .previewbrowser h2, .previewbrowser h3, .previewbrowser h4, .previewbrowser h5, .previewbrowser h6, .previewbrowser table, .previewbrowser tr, .previewbrowser td, .previewbrowser b, .previewbrowser strong, .previewbrowser i, .previewbrowser cite, .previewbrowser em, .previewbrowser var, .previewbrowser dfn, .previewbrowser u, .previewbrowser ins, .previewbrowser s, .previewbrowser strike, .previewbrowser del {
+    font-family: "Times New Roman", Times, serif;
+    text-transform: none;
+    text-shadow: none;
+}
+
+.previewbrowser a, .previewbrowser a:visited, .previewbrowser a:hover, .previewbrowser p, .previewbrowser ul, .previewbrowser ol, .previewbrowser li, .previewbrowser sub, .previewbrowser sup, .previewbrowser small, .previewbrowser big, .previewbrowser h1, .previewbrowser h2, .previewbrowser h3, .previewbrowser h4, .previewbrowser h5, .previewbrowser h6, .previewbrowser table, .previewbrowser tr, .previewbrowser td, .previewbrowser b, .previewbrowser strong, .previewbrowser i, .previewbrowser cite, .previewbrowser em, .previewbrowser var, .previewbrowser dfn, .previewbrowser u, .previewbrowser ins, .previewbrowser s, .previewbrowser strike, .previewbrowser del {
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.previewbrowser, .previewbrowser p, .previewbrowser ul, .previewbrowser ol, .previewbrowser li, .previewbrowser sub, .previewbrowser sup, .previewbrowser small, .previewbrowser big, .previewbrowser h1, .previewbrowser h2, .previewbrowser h3, .previewbrowser h4, .previewbrowser h5, .previewbrowser h6, .previewbrowser table, .previewbrowser tr, .previewbrowser td, .previewbrowser b, .previewbrowser strong, .previewbrowser i, .previewbrowser cite, .previewbrowser em, .previewbrowser var, .previewbrowser dfn, .previewbrowser u, .previewbrowser ins, .previewbrowser s, .previewbrowser strike, .previewbrowser del {
+    color: #000;
+}
+
+.previewbrowser a, .previewbrowser a:visited {
+    color: #00E;
+    -webkit-transition: none;
+    transition: none;
+    text-decoration: underline;
+}
+
+.previewbrowser a:hover {
+    color: #E00
+}
+
+.previewbrowser p {
+    display: block;
+    margin: 1em 0;
+}
+
+.previewbrowser b, .previewbrowser strong {
+    font-weight: bolder;
+}
+
+.previewbrowser i, .previewbrowser cite, .previewbrowser em, .previewbrowser var, .previewbrowser dfn {
+    font-style: italic;
+}
+
+.previewbrowser u, .previewbrowser ins {
+    text-decoration: underline;
+    background: 0;
+}
+
+.previewbrowser s, .previewbrowser strike, .previewbrowser del {
+    text-decoration: line-through;
+}
+
+.previewbrowser h1 {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin: .67em 0;
+}
+
+.previewbrowser h2 {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: .83em 0;
+}
+
+.previewbrowser h3 {
+    display: block;
+    font-size: 1.17em;
+    font-weight: bold;
+    margin: 1em 0;
+}
+
+.previewbrowser h4 {
+    display: block;
+    font-weight: bold;
+    margin: 1.33em 0;
+}
+
+.previewbrowser h5 {
+    display: block;
+    font-size: .83em;
+    font-weight: bold;
+    margin: 1.67em 0;
+}
+
+.previewbrowser h6 {
+    display: block;
+    font-size: .67em;
+    font-weight: bold;
+    margin: 2.33em 0;
+}
+
+.previewbrowser big {
+    font-size: larger;
+}
+
+.previewbrowser small {
+    font-size: smaller;
+}
+
+.previewbrowser sub {
+    vertical-align: sub;
+    font-size: .65em;
+    line-height: normal;
+}
+
+.previewbrowser sup {
+    vertical-align: super;
+    font-size: .65em;
+    line-height: normal;
+}
+
+.previewbrowser ul {
+    display: block;
+    list-style-type: disc;
+    margin: 1em 0;
+    padding-left: 40px;
+}
+
+.previewbrowser ol {
+    display: block;
+    margin: 1em 0;
+    padding-left: 40px;
+}
+
+.previewbrowser li {
+    display: list-item;
+}
+
+.previewbrowser>li {
+    margin-left: 15px;
+}
+
+.previewbrowser table {
+    display: table;
+    border-spacing: 2px;
+    border-collapse: separate;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-indent: 0;
+}
+
+.previewbrowser tr {
+    display: table-row;
+    vertical-align: inherit;
+}
+
+.previewbrowser td {
+    display: table-cell;
+    vertical-align: inherit;
+    text-align: inherit;
+    padding: 1px;
+}
+
+.previewbrowser hr {
+    display: block;
+    height: 2px;
+    border: 1px inset;
+    margin: .5em auto .5em auto;
+    color: gray;
+}
+
+.previewbrowser img {
+    border: none !important;
+}
+
+
+/* ------------------------ Other Screens ------------------------ */
+
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    html, body {
+        background: #f5f5f5;
+    }
+    /*
+    Body Content
+    */
+    .body-content {
+        margin: 10px auto 60px;
+        max-width: 600px;
+    }
+    /* Index */
+    .accordion {
+        max-width: 600px;
+        box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.12), 0px 1px 4px rgba(0, 0, 0, 0.12);
+        margin: 10px auto;
+        border-radius: 5px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    /*
+    Body Content
+    */
+    .body-content {
+        max-width: 768px;
+    }
+    /* Index */
+    .accordion {
+        max-width: 768px;
+    }
+}
